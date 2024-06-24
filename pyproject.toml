@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "Profiled Swarm"
+version = "0.1.0"
+description = "Generator of Targeted Traffic with Profiles"
+authors = ["Alex Carrega <alessandro.carrega@unige.it>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+clize = "^5.0.2"
+scapy = "^2.5.0"
+loguru = "^0.7.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
