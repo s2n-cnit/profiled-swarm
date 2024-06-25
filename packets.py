@@ -21,22 +21,25 @@ from scapy.all import DNS, DNSQR, ICMP, IP, TCP, UDP, RandString, Raw
 # Apple Bonjour:                            TCP/5353
 
 
-def __check_field(profile: object, field: str) -> None:
+def __check_field(
+    profile: object, field: str, transform: callable = lambda x: x
+) -> None:
     if not hasattr(profile, field):
         logger.error(f"Field {field} not found in profile {profile.kind}")
         sys.exit(Error.NOT_FIELD_PROFILE)
+    setattr(profile, field, transform(getattr(profile, field)))
 
 
 def __ip(profile: object) -> IP:
-    return IP(src=profile.ip_source, dst=profile.ip_dest)
+    return IP(src=choice(profile.ip_source), dst=choice(profile.ip_dest))
 
 
 def dns(profile: object) -> Any:
-    __check_field(profile, field="qname")
+    __check_field(profile, field="qname", transform=make_iter)
     return (
         __ip(profile)
         / UDP(dport=53)
-        / DNS(rd=1, qd=DNSQR(qname=choice(make_iter(profile.qname))))
+        / DNS(rd=1, qd=DNSQR(qname=choice(profile.qname)))
     )
 
 

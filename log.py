@@ -22,3 +22,4 @@ class Error(int, Enum):
     NOT_PROFILE = 1
     NOT_FIELD_PROFILE = 2
     NOT_VALID_KIND = 3
+    NOT_VALID_FIELD = 4
