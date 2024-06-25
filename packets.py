@@ -1,9 +1,10 @@
+import signal
 import sys
 from enum import Enum
 from random import choice, randint, seed
-from typing import Any
+from typing import Any, Self, Type
 
-from lib import make_iter
+from lib import duration_end, make_iter
 from log import Error, logger
 from scapy.all import DNS, DNSQR, ICMP, IP, TCP, UDP, RandString, Raw
 
@@ -19,6 +20,44 @@ from scapy.all import DNS, DNSQR, ICMP, IP, TCP, UDP, RandString, Raw
 # DNS lookups:                              UDP/53
 # Web UI of the VidiU for configuration:    TCP/443/HTTPs
 # Apple Bonjour:                            TCP/5353
+
+
+class Profile:
+    __required_fields = [
+        "ip_source",
+        "ip_dest",
+        "count",
+        "interval",
+        "kind",
+        "duration_seconds",
+    ]
+
+    __optional_fields = {"test": False, "show": False}
+
+    @staticmethod
+    def validate(cls: Type[Self]):
+        for f in Profile.__required_fields:
+            if not hasattr(cls, f):
+                logger.error(f"Profile {cls.__name__} not define field {f}")
+                sys.exit(Error.NOT_FIELD_PROFILE)
+        for f, v in Profile.__optional_fields.items():
+            if not hasattr(cls, f):
+                setattr(cls, f, v)
+        if not hasattr(Kind, cls.kind.upper()):
+            logger.error(f"Kind {cls.kind} not valid")
+            sys.exit(Error.NOT_VALID_KIND)
+        if cls.duration_seconds > 0:
+            logger.info(
+                f"Set duration of generation: {cls.duration_seconds} seconds"
+            )
+            signal.signal(signal.SIGALRM, duration_end)
+            signal.alarm(cls.duration_seconds)
+        if len(cls.interval) != len(cls.count):
+            logger.error(
+                f"Profile {cls.__name__} has internal and count"
+                "fields not of the same length"
+            )
+            sys.exit(Error.NOT_VALID_FIELD)
 
 
 def __check_field(

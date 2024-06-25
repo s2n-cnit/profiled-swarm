@@ -13,12 +13,12 @@ qname_list = [
 
 
 class __base:
-    count = -1
+    count = [-1]
     show = True
     duration_seconds = 30 * 60
-    ip_source = "172.22.1.1/16"
-    ip_dest = "172.22.1.1"
-    interval = 1.0 / 20
+    ip_source = ["172.22.1.1/16"]
+    ip_dest = ["172.22.1.1"]
+    interval = [1.0 / 20]
 
 
 class dns(__base):
@@ -43,7 +43,7 @@ class https(__base):
 class __demo(__base):
     kind = "general"
     transport = "tcp"
-    interval = 1.0 / 200
+    interval = [1.0 / 200]
 
 
 class demo(__demo):
@@ -52,23 +52,24 @@ class demo(__demo):
 
 
 class demo_2(__demo):
-    ip_source = "10.1.2/8"
+    ip_source = ["10.1.2/8"]
     port_dest = [80, 1935, 1936, 2395, 443, 53]
     payload_size_range = [400, 1000]
 
 
 class demo_3(demo_2):
-    ip_source = "12.3.2/16"
+    ip_source = ["12.3.2/16"]
     payload_size_range = [200, 1200]
 
 
 class __demo_deme_dns(dns):
-    ip_dest = "172.22.3.3"
+    show = False
+    ip_dest = ["172.22.3.3"]
     ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
 
 
 class demo_deme_dns_normal(__demo_deme_dns):
-    interval = 1.0 / 10
+    interval = [1.0 / 10]
 
 
 class demo_deme_dns_attack(__demo_deme_dns):
@@ -93,4 +94,4 @@ class demo_deme_dns_attack(__demo_deme_dns):
         ]
     )
     count = list(map(round, ref))
-    interval = list(1.0 / 120 * ref)
+    interval = list(120 / ref)
