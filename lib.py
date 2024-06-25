@@ -1,7 +1,7 @@
 import importlib
 import signal
 import sys
-from typing import Any, Self, Type
+from typing import Any, Iterable, Self, Type
 
 from log import Error, logger
 from packets import Kind
@@ -57,3 +57,10 @@ class Profile:
             )
             signal.signal(signal.SIGALRM, duration_end)
             signal.alarm(cls.duration_seconds)
+        cls.interval = make_iter(cls.interval)
+
+
+def make_iter(target: Any) -> Iterable:
+    if not hasattr("__iter__"):
+        return list(target)
+    return target

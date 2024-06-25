@@ -1,5 +1,16 @@
 import numpy as np
 
+qname_list = [
+    "google.it",
+    "nyc.com",
+    "nba.com",
+    "gazzetta.it",
+    "bbc.co.uk",
+    "example.com",
+    "fake.it",
+    "test.com",
+]
+
 
 class __base:
     count = -1
@@ -12,7 +23,7 @@ class __base:
 
 class dns(__base):
     kind = "dns"
-    qname = "google.it"
+    qname = qname_list
 
 
 class rtmp(__base):

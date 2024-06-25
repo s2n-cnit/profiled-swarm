@@ -1,8 +1,9 @@
 import sys
 from enum import Enum
-from random import randint, seed
+from random import choice, randint, seed
 from typing import Any
 
+from lib import make_iter
 from log import Error, logger
 from scapy.all import DNS, DNSQR, ICMP, IP, TCP, UDP, RandString, Raw
 
@@ -35,7 +36,7 @@ def dns(profile: object) -> Any:
     return (
         __ip(profile)
         / UDP(dport=53)
-        / DNS(rd=1, qd=DNSQR(qname=profile.qname))
+        / DNS(rd=1, qd=DNSQR(qname=choice(make_iter(profile.qname))))
     )
 
 
