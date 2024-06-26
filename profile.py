@@ -120,5 +120,5 @@ class demo_deme_dns_attack(__demo_deme_dns):
 
 class demo_deme_dns_background(demo):
     show = False
-    ip_source = [f"172.22.{x}.{x}" for x in [3, 4, 5, 6, 7, 8, 9, 10]]
-    ip_dest = ["172.22.1.1"]
+    ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
+    ip_dest = ["172.22.3.3"]
