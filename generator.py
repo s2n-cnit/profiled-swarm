@@ -19,6 +19,7 @@ def generator(*, profile_class_path: "p" = "profile"):  # noqa: F821
         profile.interval, profile.count, payload_size_list
     ):
         logger.info(
+            f"kind: {profile.kind} - "
             f"interval: {interval} - count: {count} - "
             f"payload size: {payload_size}"
         )
