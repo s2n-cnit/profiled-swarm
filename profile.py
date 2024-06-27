@@ -129,7 +129,7 @@ class demo_deme_dns_background(demo):
     ip_dest = ["172.22.3.3"]
 
 
-class __demo_deme_ntp:
+class __demo_deme_ntp(ntp):
     show = False
     ip_dest = ["172.22.2.2"]
     ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
@@ -161,7 +161,7 @@ class demo_deme_ntp_normal(__demo_deme_ntp):
     payload_size = list(ref * [])
 
 
-class demo_deme_dns_attack(__demo_deme_dns):
+class demo_deme_ntp_attack(__demo_deme_ntp):
     ref = np.array(
         [
             33.95149936,
@@ -184,9 +184,10 @@ class demo_deme_dns_attack(__demo_deme_dns):
     )
     count = list(map(round, ref))
     interval = list(120 / ref)
+    payload_size = list(ref * [])
 
 
-class demo_deme_dns_background(demo):
+class demo_deme_ntp_background(demo):
     show = False
     ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
-    ip_dest = ["172.22.3.3"]
+    ip_dest = ["172.22.2.2"]
