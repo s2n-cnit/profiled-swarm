@@ -119,6 +119,12 @@ def apple_bonjour(profile: object) -> Any:
     return __ip(profile) / TCP(dport=5353)
 
 
+def ntp(profile: object) -> Any:
+    __check_field(profile, field="payload_size")
+    payload = "\x17\x00\x03\x2a" + "\x00" * profile.payload_size
+    return __ip(profile) / UDP(sport=80, dport=123) / Raw(load=payload)
+
+
 def general(profile: object) -> Any:
     __check_field(profile, field="port_dest")
     __check_field(profile, field="transport")
@@ -146,3 +152,4 @@ class Kind(str, Enum):
     RTMPS = "rtmps"
     APPLE_BONJOUR = "apple_bonjour"
     GENERAL = "general"
+    NTP = "ntp"

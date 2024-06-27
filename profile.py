@@ -26,6 +26,11 @@ class dns(__base):
     qname = qname_list
 
 
+class ntp(__base):
+    kind = "ntp"
+    payload_size = 4
+
+
 class rtmp(__base):
     kind = "rtmp"
 
@@ -91,6 +96,69 @@ class demo_deme_dns_normal(__demo_deme_dns):
     )
     count = list(map(round, ref))
     interval = list(120 / ref)
+
+
+class demo_deme_dns_attack(__demo_deme_dns):
+    ref = np.array(
+        [
+            33.95149936,
+            33.79847654,
+            33.23726486,
+            34.92724149,
+            38.06783745,
+            46.35609054,
+            61.69733684,
+            75.76723206,
+            80.19098465,
+            76.72654594,
+            61.35187954,
+            49.45015471,
+            38.59728894,
+            35.93740773,
+            34.7416466,
+            34.83174674,
+        ]
+    )
+    count = list(map(round, ref))
+    interval = list(120 / ref)
+
+
+class demo_deme_dns_background(demo):
+    show = False
+    ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
+    ip_dest = ["172.22.3.3"]
+
+
+class __demo_deme_ntp:
+    show = False
+    ip_dest = ["172.22.2.2"]
+    ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
+
+
+class demo_deme_ntp_normal(__demo_deme_ntp):
+    ref = np.array(
+        [
+            33.82097685,
+            32.5762677,
+            33.68583422,
+            33.02180128,
+            34.31683965,
+            33.01941864,
+            33.3951162,
+            34.8044961,
+            34.82896227,
+            32.76013208,
+            34.66339299,
+            34.05555319,
+            33.568511,
+            34.19197836,
+            33.69126809,
+            34.52364965,
+        ]
+    )
+    count = list(map(round, ref))
+    interval = list(120 / ref)
+    payload_size = list(ref * [])
 
 
 class demo_deme_dns_attack(__demo_deme_dns):
