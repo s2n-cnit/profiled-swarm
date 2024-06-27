@@ -75,7 +75,7 @@ class __demo_deme_dns(dns):
 
 class __demo_deme_ntp(ntp, __demo_deme_dns):
     show = False
-    ip_dest = ["172.22.2.2"]
+    ip_dest = ["172.22.1.1"]
     ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
 
 
@@ -144,4 +144,4 @@ class demo_deme_dns_background(demo):
 
 
 class demo_deme_ntp_background(demo_deme_dns_background):
-    ip_dest = ["172.22.2.2"]
+    ip_dest = ["172.22.1.1"]
