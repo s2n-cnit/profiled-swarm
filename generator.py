@@ -15,6 +15,8 @@ def generator(*, profile_class_path: "p" = "profile"):  # noqa: F821
     kind = lib.load_class(f"packets.{profile.kind}")
     if hasattr(profile, "payload_size"):
         payload_size_list = lib.make_iter(profile.payload_size)
+    else:
+        payload_size_list = [1] * len(profile.interval)
     for interval, count, payload_size in zip(
         profile.interval, profile.count, payload_size_list
     ):
