@@ -1,14 +1,20 @@
+import logging
 import sys
 from enum import Enum
 
 from loguru import logger
 
+# FIXME bind logging from scapy to loguru
+scapy = logging.getLogger("scapy")
+scapy.setLevel(logging.CRITICAL)
+
 SEP = ", "
 
+
 logger_fmt = (
-    "<cyan>{time:YYYY-MM-DD HH:mm:ss.SSS}</cyan> "
-    "<level>{level: <10}</level> "
-    "<white>{message}</white>"
+    "<cyan>{time:YYYY-MM-DD HH:mm:ss.SSS}</cyan> | "
+    "<level>{level: <10}</level> | "
+    "<level>{message}</level>"
 )
 config = {
     "handlers": [
