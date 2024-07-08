@@ -13,7 +13,9 @@ def generator(*, profile_class_path: "p" = "profile"):  # noqa: F821
     """
     HORSE Traffic Generator
 
-    Generate  packets
+    Generate packets
+
+    :param profile_class_path: path of the profile class to use
     """
     profile = lib.load_class(profile_class_path)
     Profile.validate(profile)

@@ -1,3 +1,5 @@
+#!/usr/bin/env -S poetry run python
+
 from clize import run
 from generator import generator
 

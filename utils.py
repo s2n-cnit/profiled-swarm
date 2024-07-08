@@ -1,9 +1,12 @@
+import importlib
+import inspect
 import signal
 import sys
 import threading
 from enum import Enum
 from subprocess import PIPE, run
 from threading import Thread
+from types import ModuleType
 from typing import Dict, Optional, Self, Type
 
 
@@ -110,3 +113,18 @@ def keyboard_interrupt(callback: callable,
     if waiting:
         _forever = threading.Event()
         _forever.wait()
+
+
+def get_classes(module: str | ModuleType, prefix: str = ''):
+    if isinstance(module, str):
+        module = importlib.import_module(module)
+    objs = dir(module)
+
+    def select_class(obj: str) -> bool:
+        obj = getattr(module, obj)
+        return inspect.isclass(obj)
+
+    def add_prefix(obj: str) -> str:
+        return prefix + obj
+
+    return list(map(add_prefix, filter(select_class, objs)))
