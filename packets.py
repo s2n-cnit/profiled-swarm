@@ -121,7 +121,7 @@ def apple_bonjour(profile: object) -> Any:
 
 def ntp(profile: object) -> Any:
     __check_field(profile, field="payload_size")
-    payload = "\x17\x00\x03\x2a" + "\x00" * profile.payload_size
+    payload = "\x1b\x00\x00\x00" + "\x00" * max(11 * 4, profile.payload_size)
     return __ip(profile) / UDP(sport=80, dport=123) / Raw(load=payload)
 
 
