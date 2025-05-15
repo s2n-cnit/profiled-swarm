@@ -145,3 +145,37 @@ class demo_deme_dns_background(demo):
 
 class demo_deme_ntp_background(demo_deme_dns_background):
     ip_dest = ["172.22.1.1"]
+
+
+pkt_rate = 10 * 1000
+
+
+class __base_dt:
+    count = [-1]
+    show = True
+    duration_seconds = 30 * 4
+    # ip_source = ["10.250.237.127", "10.250.237.150", "10.250.237.128", "10.250.237.149",
+    #             "10.250.237.129", "10.250.237.148", "10.250.237.146"]
+    ip_source = ["172.19.2.7/16"]
+    interval = [1.0 / pkt_rate]
+    kind = "general"
+    ip_dest = ["192.168.130.9"]
+    payload_size_range = [500, 1200]
+
+
+class normal_tcp_dt(__base_dt):
+    port_dest = [20, 22, 25, 80, 443, 143, 993, 100, 995, 3389]
+    transport = "tcp"
+
+
+class normal_udp_dt(__base_dt):
+    port_dest = [53, 67, 68, 123, 161, 162, 500, 4500, 554]
+    transport = "udp"
+
+
+class attack_tcp_dt(normal_tcp_dt):
+    interval = [1.0 / (pkt_rate * 100)]
+
+
+class attack_udp_dt(normal_udp_dt):
+    interval = [1.0 / (pkt_rate * 100)]
