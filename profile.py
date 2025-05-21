@@ -147,7 +147,7 @@ class demo_deme_ntp_background(demo_deme_dns_background):
     ip_dest = ["172.22.1.1"]
 
 
-pkt_rate = 10 * 1000
+pkt_rate = 1000
 
 
 class __base_dt:
@@ -156,7 +156,7 @@ class __base_dt:
     duration_seconds = 30 * 4
     # ip_source = ["10.250.237.127", "10.250.237.150", "10.250.237.128", "10.250.237.149",
     #             "10.250.237.129", "10.250.237.148", "10.250.237.146"]
-    ip_source = ["172.19.2.7/16"]
+    ip_source = ["192.168.130.45", "192.168.130.19", "192.168.130.20", "192.168.130.142"]
     interval = [1.0 / pkt_rate]
     kind = "general"
     ip_dest = ["192.168.130.9"]
