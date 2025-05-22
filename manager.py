@@ -25,23 +25,22 @@ def manager(*, config: "c" = "manager.toml"):  # noqa: F821
         for packet in packets:
             pkt_idx += 1
             if packet.haslayer(IP):
+                logger.info("{pkt_idx} IP src {packet[IP].src} dst {packet[IP].dst}")
                 for pkt_dir in pkt_dirs:
                     for ip_pattern, ip_new in settings.ip.replace[pkt_dir].items():
-                        logger.warning(ip_pattern)
                         if re.search(ip_pattern, getattr(packet[IP], pkt_dir)):
                             setattr(packet[IP], pkt_dir, ip_new)
                             del packet[IP].chksum  # Remove the checksum so Scapy recalculates it
-                            logger.success(f"{pkt_idx} ip {pkt_dir} {ip_pattern} => {ip_new}")
+                            logger.success(f"{pkt_idx} IP {pkt_dir} {ip_pattern} => {ip_new}")
             for l4_proto in l4_protos:
                 if packet.haslayer(l4_protos):
                     del packet[l4_protos].chksum  # For L4 Proto packets, remove the checksum for recalculation
             remove_packet = False
             for pkt_dir in pkt_dirs:
-                for ip_pattern in settings.ip.delete[pkt_dir]:
+                for _, ip_pattern in settings.ip.delete[pkt_dir].items():
                     if re.search(ip_pattern, getattr(packet[IP], pkt_dir)):
                         remove_packet = True
                         logger.success(f"{pkt_idx} with ip {pkt_dir} = {ip_pattern} removed")
-
                         break
             if not remove_packet:
                 modified_packets.append(packet)
