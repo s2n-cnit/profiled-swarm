@@ -5,14 +5,14 @@
 "172\\.19\\.1[5-1]{1-2}\\.[0-9]{1-3}" = "192.168.130.142"
 "172\\.19\\.2[0-2]{1-2}\\.[0-9]{1-3}" =  "192.168.130.142"
 
+[ip.replace.dst]
+
 [ip.delete.src]
 0 = "192\\.168\\.130\\.1"
-
-[ip.replace.dst]
 
 [ip.delete.dst]
 
 [pcap.files]
-"normal_dt-small.pcap.old" = "normal-dt-small.pcap"
-"attack_dt-small.pcap.old" = "attack-dt-small.pcap"
-"attack_dt-large.pcap.old" = "attack-dt-large.pcap"
+"/mnt/c/Users/alexcarrega/Downloads/normal_dt-small.pcap.old" = "/mnt/c/Users/alexcarrega/Downloads/normal-dt-small.pcap"
+"/mnt/c/Users/alexcarrega/Downloads/attack_dt-small.pcap.old" = "/mnt/c/Users/alexcarrega/Downloads/attack-dt-small.pcap"
+"/mnt/c/Users/alexcarrega/Downloads/attack_dt-large.pcap.old" = "/mnt/c/Users/alexcarrega/Downloads/attack-dt-large.pcap"
