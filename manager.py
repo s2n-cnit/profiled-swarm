@@ -34,7 +34,7 @@ def manager(*, config: "c" = "manager.toml"):  # noqa: F821
                             del packet[IP].chksum  # Remove the checksum so Scapy recalculates it
                             logger.success(f"{pkt_idx} IP {pkt_dir} {ip_pattern} => {ip_new}")
             for l4_proto in l4_protos:
-                if packet.haslayer(l4_protos):
+                if packet.haslayer(l4_proto):
                     del packet[l4_proto].chksum  # For L4 Proto packets, remove the checksum for recalculation
             remove_packet = False
             for pkt_dir in pkt_dirs:
