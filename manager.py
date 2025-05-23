@@ -1,3 +1,4 @@
+import random
 import re
 
 from config import get_settings
@@ -28,8 +29,9 @@ def manager(*, config: "c" = "manager.toml"):  # noqa: F821
             if packet.haslayer(IP):
                 logger.info(f"{pkt_idx} IP src {packet[IP].src} dst {packet[IP].dst}")
                 for pkt_dir in pkt_dirs:
-                    for ip_pattern, ip_new in settings.ip.replace[pkt_dir].items():
+                    for _, ip_pattern in settings.ip.replace[pkt_dir].target.items():
                         if re.search(ip_pattern, getattr(packet[IP], pkt_dir)):
+                            ip_new = random.choices(settings.ip.replace[pkt_dir].random.values())[0]
                             setattr(packet[IP], pkt_dir, ip_new)
                             del packet[IP].chksum  # Remove the checksum so Scapy recalculates it
                             logger.success(f"{pkt_idx} IP {pkt_dir} {ip_pattern} => {ip_new}")
