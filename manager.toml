@@ -24,4 +24,7 @@
 [pcap.files]
 # "/mnt/c/Users/alexcarrega/Downloads/normal_dt-small.pcap.old" = "/mnt/c/Users/alexcarrega/Downloads/normal_dt-small.pcap"
 # "/mnt/c/Users/alexcarrega/Downloads/attack_dt-small.pcap.old" = "/mnt/c/Users/alexcarrega/Downloads/attack_dt-small.pcap"
-"/mnt/c/Users/alexcarrega/Downloads/normal_dt-large.pcap.old" = "/mnt/c/Users/alexcarrega/Downloads/normal_dt-large.pcap"
+# "/mnt/c/Users/alexcarrega/Downloads/normal_dt-large.pcap.old" = "/mnt/c/Users/alexcarrega/Downloads/normal_dt-large.pcap"
+# "/home/alexcarrega/Downloads/normal_dt-small.pcap.old" = "/home/alexcarrega/Downloads/normal_dt-small.pcap"
+"/home/alexcarrega/Downloads/attack_dt-small.pcap.old" = "/home/alexcarrega/Downloads/attack_dt-small.pcap"
+# "/home/alexcarrega/Downloads/normal_dt-large.pcap.old" = "/home/alexcarrega/Downloads/normal_dt-large.pcap"
