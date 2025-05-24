@@ -52,9 +52,13 @@ def manager(*, config: "c" = "manager.toml"):  # noqa: F821
                     for _, ip_pattern in settings.ip.reply_last[pkt_dir].items():
                         if re.search(ip_pattern, getattr(packet[IP], pkt_dir)):
                             inv_pkt_dir = inverse_pkt_dir(pkt_dir)
-                            ip_new = get_last_reply_ip(buffer_ips[inv_pkt_dir],
-                                                       settings.ip.replace[pkt_dir].random.values())
-                            setattr(packet[IP], inv_pkt_dir, ip_new)
+                            inv_ip_new = get_last_reply_ip(buffer_ips[inv_pkt_dir],
+                                                           settings.ip.replace[pkt_dir].random.values())
+                            ip_new = get_last_reply_ip(buffer_ips[pkt_dir],
+                                                       settings.ip.replace[inv_pkt_dir].random.values())
+
+                            setattr(packet[IP], inv_pkt_dir, inv_ip_new)
+                            setattr(packet[IP], pkt_dir, ip_new)
                             del packet[IP].chksum  # Remove the checksum so Scapy recalculates it
                             logger.success(f"{pkt_idx} IP {pkt_dir} {ip_pattern} => {ip_new}")
             for l4_proto in l4_protos:
