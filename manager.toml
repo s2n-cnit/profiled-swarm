@@ -36,9 +36,9 @@
 [ip.reply_last.dst]
 
 [pcap.files]
-"/mnt/c/Users/alexcarrega/Downloads/normal_dt-small.pcap.old" = "/mnt/c/Users/alexcarrega/Downloads/normal_dt-small-b.pcap"
-"/mnt/c/Users/alexcarrega/Downloads/attack_dt-small.pcap.old" = "/mnt/c/Users/alexcarrega/Downloads/attack_dt-small-b.pcap"
-"/mnt/c/Users/alexcarrega/Downloads/normal_dt-large.pcap.old" = "/mnt/c/Users/alexcarrega/Downloads/normal_dt-large-b.pcap"
+"/mnt/c/Users/alexcarrega/Downloads/traffic-traces/attack_dt-small-a.pcap" = "/mnt/c/Users/alexcarrega/Downloads/attack_dt-small-d.pcap"
+"/mnt/c/Users/alexcarrega/Downloads/traffic-traces/normal_dt-small-a.pcap" = "/mnt/c/Users/alexcarrega/Downloads/normal_dt-small-d.pcap"
+"/mnt/c/Users/alexcarrega/Downloads/traffic-traces/normal_dt-large-a.pcap" = "/mnt/c/Users/alexcarrega/Downloads/normal_dt-large-d.pcap"
 # "/home/alexcarrega/Downloads/normal_dt-small.pcap.old" = "/home/alexcarrega/Downloads/normal_dt-small.pcap"
 # "/home/alexcarrega/Downloads/attack_dt-small.pcap.old" = "/home/alexcarrega/Downloads/attack_dt-small.pcap"
 # "/home/alexcarrega/Downloads/normal_dt-large.pcap.old" = "/home/alexcarrega/Downloads/normal_dt-large.pcap"

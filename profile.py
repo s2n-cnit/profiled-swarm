@@ -147,35 +147,37 @@ class demo_deme_ntp_background(demo_deme_dns_background):
     ip_dest = ["172.22.1.1"]
 
 
-pkt_rate = 1000
+pkt_rate_normal = 1000
 
 
-class __base_dt:
-    count = [-1]
-    show = True
-    duration_seconds = 30 * 4
-    # ip_source = ["10.250.237.127", "10.250.237.150", "10.250.237.128", "10.250.237.149",
-    #             "10.250.237.129", "10.250.237.148", "10.250.237.146"]
-    ip_source = ["192.168.130.45", "192.168.130.19", "192.168.130.20", "192.168.130.142"]
-    interval = [1.0 / pkt_rate]
-    kind = "general"
-    ip_dest = ["192.168.130.9"]
-    payload_size_range = [500, 1200]
-
-
-class normal_tcp_dt(__base_dt):
-    port_dest = [20, 22, 25, 80, 443, 143, 993, 100, 995, 3389]
-    transport = "tcp"
-
-
-class normal_udp_dt(__base_dt):
-    port_dest = [53, 67, 68, 123, 161, 162, 500, 4500, 554]
+class demo_dns_normal(dns):
+    duration_seconds = 240
+    ip_source = ["192.168.130.1", "192.168.130.2", "192.168.130.3", "192.168.130.4",
+                 "192.168.130.5", "192.168.130.6", "192.168.130.7", "192.168.130.8",
+                 "192.168.130.9", "192.168.130.10"]
+    ip_dest = ["192.168.130.17"]
     transport = "udp"
+    interval = [1.0 / pkt_rate_normal]
 
 
-class attack_tcp_dt(normal_tcp_dt):
-    interval = [1.0 / (pkt_rate * 100)]
+class demo_streaming_normal(__base):
+    duration_seconds = 240
+    port_dest = [80, 443]
+    ip_source = ["192.168.130.1", "192.168.130.2", "192.168.130.3", "192.168.130.4",
+                 "192.168.130.5", "192.168.130.6", "192.168.130.7", "192.168.130.8",
+                 "192.168.130.9", "192.168.130.10"]
+    ip_dest = ["192.168.130.45", "192.168.130.19"]
+    transport = "tcp"
+    kind = "general"
+    interval = [1.0 / pkt_rate_normal]
 
 
-class attack_udp_dt(normal_udp_dt):
-    interval = [1.0 / (pkt_rate * 100)]
+pkt_rate_attack = 1000 * 100
+
+
+class demo_dns_attack(demo_dns_normal):
+    interval = [1.0 / pkt_rate_attack]
+
+
+class demo_streaming_attack(demo_streaming_normal):
+    interval = [1.0 / pkt_rate_attack]
