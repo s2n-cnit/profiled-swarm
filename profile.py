@@ -169,6 +169,7 @@ class demo_streaming_normal(__base):
     ip_dest = ["192.168.130.45", "192.168.130.19"]
     transport = "tcp"
     kind = "general"
+    payload_size_range = [400, 1000]
     interval = [1.0 / pkt_rate_normal]
 
 
