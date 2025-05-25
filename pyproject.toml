@@ -13,6 +13,7 @@ scapy = "^2.5.0"
 loguru = "^0.7.2"
 numpy = "^2.0.1"
 dynaconf = "^3.2.11"
+fabric = "^3.2.2"
 
 
 [build-system]
