@@ -149,8 +149,7 @@ class demo_deme_ntp_background(demo_deme_dns_background):
 
 pkt_rate_normal = 1000
 
-class demo_normal
-[1;2]
+
 class demo_dns_normal(dns):
     duration_seconds = 240
     ip_source = ["192.168.130.10", "192.168.130.47", "192.168.130.103", "192.168.130.27",
