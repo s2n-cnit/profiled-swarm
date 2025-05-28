@@ -32,7 +32,8 @@ streaming_port_b = 443
 dns_port = 53
 
 packet_size = 200
-packet_count = 10 * 1000 * 1000
+packet_count_normal = 10 * 1000
+packet_count_attack = 100 * 1000
 
 speed_normal = "-i u1000"
 speed_attack = "-i u100"
@@ -48,7 +49,7 @@ def requirements(c: Connection) -> None:
 
 @task
 def hping3_gen_streaming_a_normal_core(c: Connection, dst_ip: str = core_upf_ip, dst_port: int = streaming_port_a,
-                                       packet_size: int = packet_size, packet_count: int = packet_count,
+                                       packet_size: int = packet_size, packet_count: int = packet_count_normal,
                                        speed: str = speed_normal,
                                        ue_group: str | list = "normal"):
     for g in set_groups(ue_group):
@@ -58,7 +59,7 @@ def hping3_gen_streaming_a_normal_core(c: Connection, dst_ip: str = core_upf_ip,
 
 @task
 def hping3_gen_streaming_b_normal_core(c: Connection, dst_ip: str = core_upf_ip, dst_port: int = streaming_port_b,
-                                       packet_size: int = packet_size, packet_count: int = packet_count,
+                                       packet_size: int = packet_size, packet_count: int = packet_count_normal,
                                        speed: str = speed_normal,
                                        ue_group: str | list = "normal"):
     for g in set_groups(ue_group):
@@ -68,7 +69,7 @@ def hping3_gen_streaming_b_normal_core(c: Connection, dst_ip: str = core_upf_ip,
 
 @task
 def hping3_gen_streaming_a_normal_edge(c: Connection, dst_ip: str = edge_upf_ip, dst_port: int = streaming_port_a,
-                                       packet_size: int = packet_size, packet_count: int = packet_count,
+                                       packet_size: int = packet_size, packet_count: int = packet_count_normal,
                                        speed: str = speed_normal,
                                        ue_group: str | list = "normal"):
     for g in set_groups(ue_group):
@@ -78,7 +79,7 @@ def hping3_gen_streaming_a_normal_edge(c: Connection, dst_ip: str = edge_upf_ip,
 
 @task
 def hping3_gen_streaming_b_normal_edge(c: Connection, dst_ip: str = edge_upf_ip, dst_port: int = streaming_port_b,
-                                       packet_size: int = packet_size, packet_count: int = packet_count,
+                                       packet_size: int = packet_size, packet_count: int = packet_count_normal,
                                        speed: str = speed_normal,
                                        ue_group: str | list = "normal"):
     for g in set_groups(ue_group):
@@ -88,7 +89,7 @@ def hping3_gen_streaming_b_normal_edge(c: Connection, dst_ip: str = edge_upf_ip,
 
 @task
 def hping3_gen_streaming_a_attack_core(c: Connection, dst_ip: str = core_upf_ip, dst_port: int = streaming_port_a,
-                                       packet_size: int = packet_size, packet_count: int = packet_count,
+                                       packet_size: int = packet_size, packet_count: int = packet_count_attack,
                                        speed: str = speed_attack,
                                        ue_group: str | list = "attack"):
     for g in set_groups(ue_group):
@@ -98,7 +99,7 @@ def hping3_gen_streaming_a_attack_core(c: Connection, dst_ip: str = core_upf_ip,
 
 @task
 def hping3_gen_streaming_b_attack_core(c: Connection, dst_ip: str = core_upf_ip, dst_port: int = streaming_port_b,
-                                       packet_size: int = packet_size, packet_count: int = packet_count,
+                                       packet_size: int = packet_size, packet_count: int = packet_count_attack,
                                        speed: str = speed_attack,
                                        ue_group: str | list = "attack"):
     for g in set_groups(ue_group):
@@ -108,7 +109,7 @@ def hping3_gen_streaming_b_attack_core(c: Connection, dst_ip: str = core_upf_ip,
 
 @task
 def hping3_gen_streaming_a_attack_edge(c: Connection, dst_ip: str = edge_upf_ip, dst_port: int = streaming_port_a,
-                                       packet_size: int = packet_size, packet_count: int = packet_count,
+                                       packet_size: int = packet_size, packet_count: int = packet_count_attack,
                                        speed: str = speed_attack,
                                        ue_group: str | list = "attack"):
     for g in set_groups(ue_group):
@@ -118,7 +119,7 @@ def hping3_gen_streaming_a_attack_edge(c: Connection, dst_ip: str = edge_upf_ip,
 
 @task
 def hping3_gen_streaming_b_attack_edge(c: Connection, dst_ip: str = edge_upf_ip, dst_port: int = streaming_port_b,
-                                       packet_size: int = packet_size, packet_count: int = packet_count,
+                                       packet_size: int = packet_size, packet_count: int = packet_count_attack,
                                        speed: str = speed_attack,
                                        ue_group: str | list = "attack"):
     for g in set_groups(ue_group):
@@ -128,7 +129,7 @@ def hping3_gen_streaming_b_attack_edge(c: Connection, dst_ip: str = edge_upf_ip,
 
 @task
 def hping3_gen_dns_normal(c: Connection, dst_ip: str = dns_ip, dst_port: int = dns_port,
-                          packet_size: int = packet_size, packet_count: int = packet_count,
+                          packet_size: int = packet_size, packet_count: int = packet_count_normal,
                           speed: str = speed_normal,
                           ue_group: str | list = "normal"):
     for g in set_groups(ue_group):
@@ -138,7 +139,7 @@ def hping3_gen_dns_normal(c: Connection, dst_ip: str = dns_ip, dst_port: int = d
 
 @task
 def hping3_gen_dns_attack(c: Connection, dst_ip: str = dns_ip, dst_port: int = dns_port,
-                          packet_size: int = packet_size, packet_count: int = packet_count,
+                          packet_size: int = packet_size, packet_count: int = packet_count_attack,
                           speed: str = speed_attack,
                           ue_group: str | list = "attack"):
     for g in set_groups(ue_group):
