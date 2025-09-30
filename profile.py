@@ -185,5 +185,5 @@ class demo_streaming_attack(demo_streaming_normal):
 
 
 class demo_holo_attack(demo_deme_ntp_attack):
-    ip_dest = ["192.168.130.17"]  # FIXME: change value
+    ip_dest = ["192.168.130.145"]  # FIXME: change value
     interval = [1.0 / pkt_rate_attack]
