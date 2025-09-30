@@ -19,6 +19,3 @@ scapy-unroot = "^0.3.0b4"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
-exe = "setup:install"
