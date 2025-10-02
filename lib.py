@@ -1,5 +1,5 @@
 import importlib
-import sys
+import sys, os
 from typing import Any, Iterable
 
 from log import Error, logger
@@ -21,6 +21,9 @@ def duration_end(signum, frame):
 
 
 def load_module(path: str) -> Any:
+    cwd = os.getcwd()
+    if not cwd in sys.path:
+        sys.path.insert(0, cwd)
     return importlib.import_module(path)
 
 
