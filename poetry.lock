@@ -595,10 +595,7 @@ files = [
 ]
 
 [package.dependencies]
-cffi = [
-    {version = ">=1.4.1", markers = "platform_python_implementation != \"PyPy\" and python_version < \"3.14\""},
-    {version = ">=2.0.0", markers = "platform_python_implementation != \"PyPy\" and python_version >= \"3.14\""},
-]
+cffi = {version = ">=1.4.1", markers = "platform_python_implementation != \"PyPy\" and python_version < \"3.14\""}
 
 [package.extras]
 docs = ["sphinx (<7)", "sphinx_rtd_theme"]
@@ -749,5 +746,5 @@ files = [
 
 [metadata]
 lock-version = "2.1"
-python-versions = "~=3.12"
-content-hash = "fef3173ca47ed916691177aa8f162216a4937eda1617ef46b1654892edccf0cd"
+python-versions = ">=3.12.0, <3.14"
+content-hash = "ce45d789565d8058845ce146163da66f23d1dcb9ec5fc4a7fd49464a6cc50be4"
