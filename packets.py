@@ -72,7 +72,7 @@ def __ip(profile: object) -> IP:
     if hasattr(profile, "ip_source"):
         return IP(src=choice(profile.ip_source), dst=choice(profile.ip_dest))
     else:
-        IP(dst=choice(profile.ip_dest))
+        return IP(dst=choice(profile.ip_dest))
 
 
 def dns(profile: object) -> Any:
