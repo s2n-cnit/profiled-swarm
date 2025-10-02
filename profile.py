@@ -16,8 +16,6 @@ class __base:
     count = [-1]
     show = True
     duration_seconds = 30 * 60
-    ip_source = ["172.22.1.1/16"]
-    ip_dest = ["172.22.1.1"]
     interval = [1.0 / 20]
 
 
