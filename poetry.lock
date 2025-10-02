@@ -535,21 +535,6 @@ complete = ["cryptography (>=2.0)", "ipython", "matplotlib", "pyx"]
 docs = ["sphinx (>=3.0.0)", "sphinx_rtd_theme (>=0.4.3)", "tox (>=3.0.0)"]
 
 [[package]]
-name = "scapy-unroot"
-version = "0.3.0b4"
-description = "Daemon and tooling to enable using scapy without root permissions."
-optional = false
-python-versions = ">=3.6"
-groups = ["main"]
-files = [
-    {file = "scapy_unroot-0.3.0b4-py3-none-any.whl", hash = "sha256:424c891e16af5befcfc8c6862e2b059dd580fca49c05ff2339637e8465f95309"},
-    {file = "scapy_unroot-0.3.0b4.tar.gz", hash = "sha256:9dc80bbf7f441380a6ddb16e903cf06db24ca858d6eea868c10629d0d8d5f3e6"},
-]
-
-[package.dependencies]
-scapy = "*"
-
-[[package]]
 name = "sigtools"
 version = "4.0.1"
 description = "Utilities for working with inspect.Signature objects."
@@ -676,4 +661,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "5476236d9ad0eba720b74bae4f4c50b36f1c4b6f709de20cbda9db1a911f436d"
+content-hash = "9ff97f361f103e257d0730bc62bcd7e238948c65803ce0b170c108ae9964256c"
