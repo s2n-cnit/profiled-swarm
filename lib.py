@@ -17,7 +17,7 @@ def make_iter(target: Any) -> Iterable:
 
 def duration_end(signum, frame):
     logger.info("Generation done.")
-    exit(0)
+    sys.exit(0)
 
 
 def load_module(path: str) -> Any:
