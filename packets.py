@@ -24,7 +24,6 @@ from scapy.all import DNS, DNSQR, ICMP, IP, TCP, UDP, RandString, Raw
 
 class Profile:
     __required_fields = [
-        "ip_source",
         "ip_dest",
         "count",
         "interval",
@@ -70,7 +69,10 @@ def __check_field(
 
 
 def __ip(profile: object) -> IP:
-    return IP(src=choice(profile.ip_source), dst=choice(profile.ip_dest))
+    if hasattr(profile, "ip_source"):
+        return IP(src=choice(profile.ip_source), dst=choice(profile.ip_dest))
+    else:
+        IP(dst=choice(profile.ip_dest))
 
 
 def dns(profile: object) -> Any:
