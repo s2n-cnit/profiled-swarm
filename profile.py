@@ -15,7 +15,7 @@ qname_list = [
 class __base:
     count = [-1]
     show = True
-    duration_seconds = 30 * 60
+    duration_seconds = 3 * 60
     interval = [1.0 / 20]
 
 
