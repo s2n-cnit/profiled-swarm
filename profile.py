@@ -183,7 +183,7 @@ class demo_streaming_attack(demo_streaming_normal):
 
 
 class demo_holo_attack(__base):
-    ip_dest = ["192.168.130.145"]  # FIXME: change value
+    ip_dest = ["192.168.130.128"]  # FIXME: change value
     transport = "tcp"
     kind = "general"
     payload_size_range = [400, 1000]
