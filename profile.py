@@ -187,5 +187,5 @@ class demo_holo_attack(__base):
     transport = "tcp"
     kind = "general"
     payload_size_range = [400, 1000]
-    interval = [1.0 / pkt_rate_normal]
+    interval = [1.0 / pkt_rate_attack]
     port_dest = [80, 443]
