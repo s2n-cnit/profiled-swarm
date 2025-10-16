@@ -1,83 +1,18 @@
 import numpy as np
 
-qname_list = [
-    "google.it",
-    "nyc.com",
-    "nba.com",
-    "gazzetta.it",
-    "bbc.co.uk",
-    "example.com",
-    "fake.it",
-    "test.com",
-]
 
-
-class __base:
-    count = [-1]
-    show = True
-    duration_seconds = 3 * 60
-    interval = [1.0 / 20]
-
-
-class dns(__base):
-    kind = "dns"
-    qname = qname_list
-
-
-class ntp(__base):
-    kind = "ntp"
-    payload_size = 4
-
-
-class rtmp(__base):
-    kind = "rtmp"
-
-
-class http(__base):
-    kind = "http"
-    url_path = "index.html"
-
-
-class https(__base):
-    kind = "https"
-    url_path = "page.html"
-
-
-class __demo(__base):
+class __demo:
+    show = False
     kind = "general"
     transport = "tcp"
     interval = [1.0 / 200]
-
-
-class demo(__demo):
-    port_dest = [80, 1935, 1936, 2395, 443]
     payload_size_range = [500, 1200]
-
-
-class demo_2(__demo):
-    ip_source = ["10.1.2/8"]
     port_dest = [80, 1935, 1936, 2395, 443, 53]
-    payload_size_range = [400, 1000]
-
-
-class demo_3(demo_2):
-    ip_source = ["12.3.2/16"]
-    payload_size_range = [200, 1200]
-
-
-class __demo_deme_dns(dns):
-    show = False
-    ip_dest = ["172.22.3.3"]
-    # ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
-
-
-class __demo_deme_ntp(ntp, __demo_deme_dns):
-    show = False
     ip_dest = ["192.168.130.45"]
-    # ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
 
 
-class demo_deme_dns_normal(__demo_deme_dns):
+class demo_ntp_normal(__demo):
+    show = False
     ref = np.array(
         [
             33.82097685,
@@ -102,11 +37,7 @@ class demo_deme_dns_normal(__demo_deme_dns):
     interval = list(120 / ref)
 
 
-class demo_deme_ntp_normal(__demo_deme_ntp, demo_deme_dns_normal):
-    payload_size = [4] * len(demo_deme_dns_normal.ref)
-
-
-class demo_deme_dns_attack(__demo_deme_dns):
+class demo_ntp_attack(__demo):
     ref = np.array(
         [
             33.95149936,
@@ -129,63 +60,3 @@ class demo_deme_dns_attack(__demo_deme_dns):
     )
     count = list(map(round, ref))
     interval = list(120 / ref)
-
-
-class demo_deme_ntp_attack(__demo_deme_ntp, demo_deme_dns_attack):
-    payload_size = [4] * len(demo_deme_dns_attack.ref)
-
-
-# class demo_deme_dns_background(demo):
-#     show = False
-#     # ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
-#     ip_dest = ["172.22.3.3"]
-
-
-# class demo_deme_ntp_background(demo_deme_dns_background):
-#     ip_dest = ["192.168.130.45"]
-
-
-# pkt_rate_normal = 1000
-
-
-# class demo_dns_normal(dns):
-#     duration_seconds = 240
-#     ip_source = ["192.168.130.10", "192.168.130.47", "192.168.130.103", "192.168.130.27",
-#                  "192.168.130.93", "192.168.130.133", "192.168.130.68", "192.168.130.6",
-#                  "192.168.130.96", "192.168.130.132"]
-#     ip_dest = ["192.168.130.17"]
-#     transport = "udp"
-#     interval = [1.0 / pkt_rate_normal]
-
-
-# class demo_streaming_normal(__base):
-#     duration_seconds = 240
-#     port_dest = [80, 443]
-#     ip_source = ["192.168.130.10", "192.168.130.47", "192.168.130.103", "192.168.130.27",
-#                  "192.168.130.93", "192.168.130.133", "192.168.130.68", "192.168.130.6",
-#                  "192.168.130.96", "192.168.130.132"]
-#     ip_dest = ["192.168.130.45", "192.168.130.19"]
-#     transport = "tcp"
-#     kind = "general"
-#     payload_size_range = [400, 1000]
-#     interval = [1.0 / pkt_rate_normal]
-
-
-# pkt_rate_attack = 1000 * 100
-
-
-# class demo_dns_attack(demo_dns_normal):
-#     interval = [1.0 / pkt_rate_attack]
-
-
-# class demo_streaming_attack(demo_streaming_normal):
-#     interval = [1.0 / pkt_rate_attack]
-
-
-# class demo_holo_attack(__base):
-#     ip_dest = ["192.168.130.45"]  # FIXME: change value
-#     transport = "tcp"
-#     kind = "general"
-#     payload_size_range = [400, 1000]
-#     interval = [1.0 / pkt_rate_attack]
-#     port_dest = [80, 443]
