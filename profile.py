@@ -68,13 +68,13 @@ class demo_3(demo_2):
 class __demo_deme_dns(dns):
     show = False
     ip_dest = ["172.22.3.3"]
-    ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
+    # ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
 
 
 class __demo_deme_ntp(ntp, __demo_deme_dns):
     show = False
-    ip_dest = ["172.22.1.1"]
-    ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
+    ip_dest = ["192.168.130.45"]
+    # ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
 
 
 class demo_deme_dns_normal(__demo_deme_dns):
@@ -135,57 +135,57 @@ class demo_deme_ntp_attack(__demo_deme_ntp, demo_deme_dns_attack):
     payload_size = [4] * len(demo_deme_dns_attack.ref)
 
 
-class demo_deme_dns_background(demo):
-    show = False
-    ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
-    ip_dest = ["172.22.3.3"]
+# class demo_deme_dns_background(demo):
+#     show = False
+#     # ip_source = [f"172.22.{x}.{x}" for x in [4, 5, 6, 7, 8, 9, 10]]
+#     ip_dest = ["172.22.3.3"]
 
 
-class demo_deme_ntp_background(demo_deme_dns_background):
-    ip_dest = ["172.22.1.1"]
+# class demo_deme_ntp_background(demo_deme_dns_background):
+#     ip_dest = ["192.168.130.45"]
 
 
-pkt_rate_normal = 1000
+# pkt_rate_normal = 1000
 
 
-class demo_dns_normal(dns):
-    duration_seconds = 240
-    ip_source = ["192.168.130.10", "192.168.130.47", "192.168.130.103", "192.168.130.27",
-                 "192.168.130.93", "192.168.130.133", "192.168.130.68", "192.168.130.6",
-                 "192.168.130.96", "192.168.130.132"]
-    ip_dest = ["192.168.130.17"]
-    transport = "udp"
-    interval = [1.0 / pkt_rate_normal]
+# class demo_dns_normal(dns):
+#     duration_seconds = 240
+#     ip_source = ["192.168.130.10", "192.168.130.47", "192.168.130.103", "192.168.130.27",
+#                  "192.168.130.93", "192.168.130.133", "192.168.130.68", "192.168.130.6",
+#                  "192.168.130.96", "192.168.130.132"]
+#     ip_dest = ["192.168.130.17"]
+#     transport = "udp"
+#     interval = [1.0 / pkt_rate_normal]
 
 
-class demo_streaming_normal(__base):
-    duration_seconds = 240
-    port_dest = [80, 443]
-    ip_source = ["192.168.130.10", "192.168.130.47", "192.168.130.103", "192.168.130.27",
-                 "192.168.130.93", "192.168.130.133", "192.168.130.68", "192.168.130.6",
-                 "192.168.130.96", "192.168.130.132"]
-    ip_dest = ["192.168.130.45", "192.168.130.19"]
-    transport = "tcp"
-    kind = "general"
-    payload_size_range = [400, 1000]
-    interval = [1.0 / pkt_rate_normal]
+# class demo_streaming_normal(__base):
+#     duration_seconds = 240
+#     port_dest = [80, 443]
+#     ip_source = ["192.168.130.10", "192.168.130.47", "192.168.130.103", "192.168.130.27",
+#                  "192.168.130.93", "192.168.130.133", "192.168.130.68", "192.168.130.6",
+#                  "192.168.130.96", "192.168.130.132"]
+#     ip_dest = ["192.168.130.45", "192.168.130.19"]
+#     transport = "tcp"
+#     kind = "general"
+#     payload_size_range = [400, 1000]
+#     interval = [1.0 / pkt_rate_normal]
 
 
-pkt_rate_attack = 1000 * 100
+# pkt_rate_attack = 1000 * 100
 
 
-class demo_dns_attack(demo_dns_normal):
-    interval = [1.0 / pkt_rate_attack]
+# class demo_dns_attack(demo_dns_normal):
+#     interval = [1.0 / pkt_rate_attack]
 
 
-class demo_streaming_attack(demo_streaming_normal):
-    interval = [1.0 / pkt_rate_attack]
+# class demo_streaming_attack(demo_streaming_normal):
+#     interval = [1.0 / pkt_rate_attack]
 
 
-class demo_holo_attack(__base):
-    ip_dest = ["192.168.130.45"]  # FIXME: change value
-    transport = "tcp"
-    kind = "general"
-    payload_size_range = [400, 1000]
-    interval = [1.0 / pkt_rate_attack]
-    port_dest = [80, 443]
+# class demo_holo_attack(__base):
+#     ip_dest = ["192.168.130.45"]  # FIXME: change value
+#     transport = "tcp"
+#     kind = "general"
+#     payload_size_range = [400, 1000]
+#     interval = [1.0 / pkt_rate_attack]
+#     port_dest = [80, 443]
