@@ -25,6 +25,7 @@ class demo_ntp_normal(__demo):
     )
     count = list(map(round, ref))
     interval = list(120 / ref)
+    duration_seconds = 2 * 60 * len(ref)
 
 
 class demo_ntp_attack_ps500_1200(__demo):
@@ -39,6 +40,7 @@ class demo_ntp_attack_ps500_1200(__demo):
     )
     count = list(map(round, ref))
     interval = list(120 / ref)
+    duration_seconds = 2 * 60 * len(ref)
 
 
 class demo_ntp_attack_ps2k_3k(demo_ntp_attack_ps500_1200):
