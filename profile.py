@@ -13,7 +13,6 @@ class __demo:
 
 
 class demo_ntp_normal(__demo):
-    show = False
     ref = np.array(
         [
             26,

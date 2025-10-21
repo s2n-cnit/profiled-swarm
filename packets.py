@@ -31,6 +31,14 @@ class Profile:
         "duration_seconds",
     ]
 
+    __exclusive_fields = [
+        ("payload_size", "payload_size_range")
+    ]
+
+    __required_at_least_one_fields = [
+        ("payload_size", "payload_size_range")
+    ]
+
     __optional_fields = {"test": False, "show": False}
 
     @staticmethod
@@ -39,6 +47,20 @@ class Profile:
             if not hasattr(cls, f):
                 logger.error(f"Profile {cls.__name__} not define field {f}")
                 sys.exit(Error.NOT_FIELD_PROFILE)
+        for f1, f2 in Profile.__exclusive_fields:
+            if hasattr(cls, f1) and hasattr(cls, f2):
+                logger.error(
+                    f"Profile {cls.__name__} has exclusive fields"
+                    f" {f1} and {f2} defined together"
+                )
+                sys.exit(Error.EXCLUSIVE_FIELD)
+        for group in Profile.__required_at_least_one_fields:
+            if not any(hasattr(cls, f) for f in group):
+                logger.error(
+                    f"Profile {cls.__name__} must define at least one"
+                    f" of the fields: {', '.join(group)}"
+                )
+                sys.exit(Error.REQUIRED_AT_LEAST_ONE_FIELD)
         for f, v in Profile.__optional_fields.items():
             if not hasattr(cls, f):
                 setattr(cls, f, v)

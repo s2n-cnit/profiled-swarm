@@ -29,3 +29,5 @@ class Error(int, Enum):
     NOT_FIELD_PROFILE = 2
     NOT_VALID_KIND = 3
     NOT_VALID_FIELD = 4
+    EXCLUSIVE_FIELD = 5
+    REQUIRED_AT_LEAST_ONE_FIELD = 6

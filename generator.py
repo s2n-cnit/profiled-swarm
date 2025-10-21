@@ -3,7 +3,7 @@ from log import logger
 from packets import Profile
 from scapy.all import send
 from utils import keyboard_interrupt
-
+import random
 
 def _exit():
     logger.warning("Terminating...")
@@ -25,6 +25,11 @@ def generator(*, profile_class_path: "p" = "profile"):  # noqa: F821
         payload_size_list = lib.make_iter(profile.payload_size)
     else:
         payload_size_list = [1] * len(profile.interval)
+    if hasattr(profile, "payload_size_range"):
+        ps_min, ps_max = profile.payload_size_range
+        payload_size_list = [
+            random.randint(ps_min, ps_max + 1) for _ in range(len(profile.interval))
+        ]
     for interval, count, payload_size in zip(profile.interval, profile.count,
                                              payload_size_list):
         logger.info(f"kind: {profile.kind} - "
