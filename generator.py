@@ -10,14 +10,13 @@ def _exit():
     logger.warning("Terminating...")
 
 
-def generator(dest: list, profile_class_path: "p" = "profile"):  # noqa: F821
+def generator(*dest, profile_class_path: "p" = "profile"):  # noqa: F821
     """
     HORSE Traffic Generator
 
     Generate packets
 
     :param profile_class_path: path of the profile class to use
-    :param dest: destination IP address
     """
     profile = lib.load_class(profile_class_path)
     Profile.validate(profile)
