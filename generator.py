@@ -19,6 +19,7 @@ def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
     Generate packets
 
     :param profile_class_path: path of the profile class to use
+    :param dest: destination IP addresses
     """
     profile = lib.load_class(profile_class_path)
     Profile.validate(profile)
