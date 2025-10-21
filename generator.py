@@ -10,7 +10,7 @@ def _exit():
     logger.warning("Terminating...")
 
 
-def generator(*, profile_class_path: "p" = "profile", dest: "d" = None):  # noqa: F821
+def generator(dest: list, profile_class_path: "p" = "profile"):  # noqa: F821
     """
     HORSE Traffic Generator
 
@@ -32,7 +32,7 @@ def generator(*, profile_class_path: "p" = "profile", dest: "d" = None):  # noqa
         payload_size_list = [
             random.randint(ps_min, ps_max + 1) for _ in range(len(profile.interval))
         ]
-    if dest:
+    if len(dest) > 0:
         profile.dest = dest
     for interval, count, payload_size in zip(profile.interval, profile.count,
                                              payload_size_list):
