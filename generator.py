@@ -5,17 +5,19 @@ from scapy.all import send
 from utils import keyboard_interrupt
 import random
 
+
 def _exit():
     logger.warning("Terminating...")
 
 
-def generator(*, profile_class_path: "p" = "profile"):  # noqa: F821
+def generator(*, profile_class_path: "p" = "profile", dest: "d" = None):  # noqa: F821
     """
     HORSE Traffic Generator
 
     Generate packets
 
     :param profile_class_path: path of the profile class to use
+    :param dest: destination IP address
     """
     profile = lib.load_class(profile_class_path)
     Profile.validate(profile)
@@ -30,6 +32,8 @@ def generator(*, profile_class_path: "p" = "profile"):  # noqa: F821
         payload_size_list = [
             random.randint(ps_min, ps_max + 1) for _ in range(len(profile.interval))
         ]
+    if dest:
+        profile.dest = dest
     for interval, count, payload_size in zip(profile.interval, profile.count,
                                              payload_size_list):
         logger.info(f"kind: {profile.kind} - "
