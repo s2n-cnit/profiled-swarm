@@ -12,7 +12,7 @@ def _exit():
 
 
 def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
-              dest:('d', parameters.multi(min=0, max=10))):  # noqa: F821
+              dest: ('d', parameters.multi(min=0, max=10))):  # noqa: F821
     """
     HORSE Traffic Generator
 
@@ -21,6 +21,8 @@ def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
     :param profile_class_path: path of the profile class to use
     :param dest: destination IP addresses
     """
+    saved_args = {**locals()}  # Updated to make a copy per loco.loop
+    print(saved_args)
     profile = lib.load_class(profile_class_path)
     Profile.validate(profile)
     kind = lib.load_class(f"packets.{profile.kind}")
