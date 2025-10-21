@@ -4,13 +4,15 @@ from packets import Profile
 from scapy.all import send
 from utils import keyboard_interrupt
 import random
+from clize import parameters
 
 
 def _exit():
     logger.warning("Terminating...")
 
 
-def generator(*dest, profile_class_path: "p" = "profile"):  # noqa: F821
+def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
+              dest: ('d', parameters.multi())):  # noqa: F821
     """
     HORSE Traffic Generator
 
