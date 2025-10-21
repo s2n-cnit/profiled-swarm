@@ -12,7 +12,7 @@ def _exit():
 
 
 def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
-              dest: ('d', parameters.multi(min=0, max=10))):  # noqa: F821
+              dest:('d', parameters.multi(min=0, max=10))):  # noqa: F821
     """
     HORSE Traffic Generator
 
