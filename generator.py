@@ -4,7 +4,6 @@ from packets import Profile
 from scapy.all import send
 from utils import keyboard_interrupt
 import random
-from clize import parameters
 
 
 def _exit():
@@ -12,7 +11,7 @@ def _exit():
 
 
 def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
-              dest: ('d', parameters.multi(min=0, max=10))):  # noqa: F821
+              **kwargs: dict):  # noqa: F821
     """
     HORSE Traffic Generator
 
@@ -22,7 +21,7 @@ def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
     :param dest: destination IP addresses
     """
     profile = lib.load_class(profile_class_path)
-    Profile.validate(profile)
+    Profile.validate(profile, kwargs)
     kind = lib.load_class(f"packets.{profile.kind}")
     keyboard_interrupt(_exit, return_code=1, waiting=False)
     if hasattr(profile, "payload_size"):
@@ -34,8 +33,6 @@ def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
         payload_size_list = [
             random.randint(ps_min, ps_max + 1) for _ in range(len(profile.interval))
         ]
-    if len(dest) > 0:
-        profile.ip_dest = dest
     for interval, count, payload_size in zip(profile.interval, profile.count,
                                              payload_size_list):
         logger.info(f"kind: {profile.kind} - "
