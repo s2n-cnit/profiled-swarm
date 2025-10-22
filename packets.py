@@ -42,7 +42,7 @@ class Profile:
     __optional_fields = {"test": False, "show": False}
 
     @staticmethod
-    def validate(cls: Type[Self], inline_params: dict) -> None:
+    def validate(cls: Type[Self]):
         for f in Profile.__required_fields:
             if not hasattr(cls, f):
                 logger.error(f"Profile {cls.__name__} not define field {f}")
@@ -79,11 +79,6 @@ class Profile:
                 "fields not of the same length"
             )
             sys.exit(Error.NOT_VALID_FIELD)
-        for k, v in inline_params.items():
-            if hasattr(cls, k):
-                setattr(cls, k, v)
-            else:
-                logger.warning(f"Profile has no attribute '{k}'")
 
 
 def __check_field(

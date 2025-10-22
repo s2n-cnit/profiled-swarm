@@ -27,7 +27,7 @@ class demo_ntp_normal(__demo):
     duration_seconds = 2 * 60 * len(ref)
 
 
-class demo_ntp_attack_ps500_1200(__demo):
+class demo_ntp_attack_ps500_1200_pm3k(__demo):
     ref = np.array(
         [
             26,
@@ -42,9 +42,72 @@ class demo_ntp_attack_ps500_1200(__demo):
     duration_seconds = 2 * 60 * len(ref)
 
 
-class demo_ntp_attack_ps2k_3k(demo_ntp_attack_ps500_1200):
+class demo_ntp_attack_ps2k_3k_pm3k(demo_ntp_attack_ps500_1200_pm3k):
     payload_size_range = [2000, 3000]
 
 
-class demo_ntp_attack_ps3k_4k(demo_ntp_attack_ps2k_3k):
+class demo_ntp_attack_ps3k_4k_pm3k(demo_ntp_attack_ps500_1200_pm3k):
+    payload_size_range = [3000, 4000]
+
+
+class demo_ntp_attack_ps500_1200_pm5k(demo_ntp_attack_ps500_1200_pm3k):
+    ref = np.array(
+        [
+            26,
+            1000,
+            5000,
+            5000,
+            5000
+        ]
+    )
+    interval = list(120 / ref)
+
+
+class demo_ntp_attack_ps2k_3k_pm5k(demo_ntp_attack_ps500_1200_pm5k):
+    payload_size_range = [2000, 3000]
+
+
+class demo_ntp_attack_ps3k_4k_pm5k(demo_ntp_attack_ps500_1200_pm5k):
+    payload_size_range = [3000, 4000]
+
+
+class demo_ntp_attack_ps500_1200_pm7k(demo_ntp_attack_ps500_1200_pm5k):
+    ref = np.array(
+        [
+            26,
+            1000,
+            7000,
+            7000,
+            7000
+        ]
+    )
+    interval = list(120 / ref)
+
+
+class demo_ntp_attack_ps2k_3k_pm7k(demo_ntp_attack_ps500_1200_pm5k):
+    payload_size_range = [2000, 3000]
+
+
+class demo_ntp_attack_ps3k_4k_pm7k(demo_ntp_attack_ps500_1200_pm5k):
+    payload_size_range = [3000, 4000]
+
+
+class demo_ntp_attack_ps500_1200_pm10k(demo_ntp_attack_ps500_1200_pm7k):
+    ref = np.array(
+        [
+            26,
+            1000,
+            7000,
+            7000,
+            7000
+        ]
+    )
+    interval = list(120 / ref)
+
+
+class demo_ntp_attack_ps2k_3k_pm10k(demo_ntp_attack_ps500_1200_pm7k):
+    payload_size_range = [2000, 3000]
+
+
+class demo_ntp_attack_ps3k_4k_pm10k(demo_ntp_attack_ps500_1200_pm7k):
     payload_size_range = [3000, 4000]
