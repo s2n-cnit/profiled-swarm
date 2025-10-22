@@ -21,8 +21,6 @@ def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
     :param profile_class_path: path of the profile class to use
     :param dest: destination IP addresses
     """
-    saved_args = {**locals()}  # Updated to make a copy per loco.loop
-    print(saved_args)
     profile = lib.load_class(profile_class_path)
     Profile.validate(profile)
     kind = lib.load_class(f"packets.{profile.kind}")
@@ -45,6 +43,7 @@ def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
                     f"payload size: {payload_size}")
         profile.payload_size = payload_size
         pkts = kind(profile)
+        print(pkts)
         if profile.show:
             pkts.show()
         if not profile.test:
