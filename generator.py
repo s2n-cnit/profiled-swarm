@@ -35,7 +35,7 @@ def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
             random.randint(ps_min, ps_max + 1) for _ in range(len(profile.interval))
         ]
     if len(dest) > 0:
-        profile.dest = dest
+        profile.ip_dest = dest
     for interval, count, payload_size in zip(profile.interval, profile.count,
                                              payload_size_list):
         logger.info(f"kind: {profile.kind} - "
@@ -43,7 +43,6 @@ def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
                     f"payload size: {payload_size}")
         profile.payload_size = payload_size
         pkts = kind(profile)
-        print(profile.dest, pkts)
         if profile.show:
             pkts.show()
         if not profile.test:
