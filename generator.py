@@ -43,7 +43,7 @@ def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
                     f"payload size: {payload_size}")
         profile.payload_size = payload_size
         pkts = kind(profile)
-        print(pkts)
+        print(profile, pkts)
         if profile.show:
             pkts.show()
         if not profile.test:
