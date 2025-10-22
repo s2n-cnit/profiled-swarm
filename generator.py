@@ -11,7 +11,7 @@ def _exit():
 
 
 def generator(*, profile_class_path: "p" = "profile",  # noqa: F821
-              **kwargs: dict):  # noqa: F821
+              **kwargs: ...):  # noqa: F821
     """
     HORSE Traffic Generator
 
