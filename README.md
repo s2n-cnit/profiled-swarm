@@ -1,12 +1,72 @@
-# Profiled Swarm: Generator of Targeted Traffic with Profiles
+# Profiled Swarm
+
+> Generator of Targeted Traffic with Profiles
 
 ## Overview
 
-Profiled Swarm is a powerful Python framework designed to generate targeted, realistic network traffic based on configurable behavioural profiles. Its primary function is to simulate complex network environments—such as a "swarm" of users or bots—interacting with specific network services or hosts.The core distinction of Profiled Swarm is its commitment to realism. Unlike simple packet-flood generators, this tool allows engineers to define complex stateful behaviors, including inter-packet timing distributions, protocol sequences (e.g., TCP handshakes followed by specific HTTP requests), and dynamically varying payload sizes. This capability is essential for creating high-fidelity network simulations that accurately reflect real-world user activity, making it a critical asset in network research and security testing.This tool is invaluable for researchers and engineers conducting network security experiments, performance testing, intrusion detection system (IDS) validation, and generating highly specific datasets for machine learning models. Furthermore, it is perfectly suited for use in defensive network architectures, such as stress-testing firewall rules, evaluating load balancer efficiency under realistic load, or generating background noise to cloak anomalous traffic within a honeypot deployment.
+**Profiled Swarm** is a powerful Python framework designed to generate targeted, realistic network traffic based on configurable behavioural profiles.
+
+> [!NOTE]
+> Its primary function is to simulate complex network environments—such as a _swarm_ of users or bots—interacting with specific network services or hosts.
+
+> [!TIP]
+> The core distinction of Profiled Swarm is its commitment to realism. Unlike simple packet-flood generators, this tool allows engineers to define complex stateful behaviors, including inter-packet timing distributions, protocol sequences
+> (e.g., TCP[^1] handshakes followed by specific HTTP[^2] requests), and dynamically varying payload sizes.
+
+This capability is essential for creating high-fidelity network simulations that accurately reflect real-world user activity, making it a critical asset in network research and security testing.
+
+> [!IMPORTANT]
+> This tool is invaluable for researchers and engineers conducting network security experiments, performance testing, IDS[^3] validation, and generating highly specific datasets for machine learning models. Furthermore, it is perfectly >
+> suited for use in defensive network architectures, such as stress-testing firewall rules, evaluating load balancer efficiency under realistic load, or generating background noise to cloak anomalous traffic within a honeypot deployment.
 
 ## Key Features
 
-Profile-Driven Generation: Define custom traffic profiles (.toml or similar configuration) to model specific behaviors (e.g., web browsing, heavy file transfers, intermittent heartbeat pings). The profiles are the heart of the system, allowing for the precise modeling of statistical behavior. This includes specifying packet-size distributions, protocol usage over time, and crucial parameters like 'think time' (the randomized delay between sending subsequent packets), which dramatically enhances the realism compared to continuous stream generation. You can model everything from benign IoT device communications to complex coordinated scans.Swarm Management: Coordinate multiple, simultaneous traffic generators (the "swarm") from a centralized manager. The management layer handles the distribution and parallel execution of different profiles across various target hosts and interfaces. This capability enables large-scale, high-volume simulations, allowing a single control point to launch a heterogeneous mix of traffic streams, simulating an entire segment of a corporate or residential network rather than just one machine. This is vital for distributed performance and security testing.Targeted Traffic: Easily specify target IP addresses, ports, and protocols for focused experimentation. The targeting mechanism supports defining streams that interact across the network stack, from Layer 3 (IP addresses and fragmentation rules) and Layer 4 (TCP/UDP ports) all the way up to application-layer protocols. This allows for fine-grained control, enabling tests against specific services, assessing the effectiveness of network segmentation policies, or focusing stress tests on a single, critical application port.Modular Design: Built on clear components for configuration (config.py), profile definition (profile.py), packet generation (packets.py), and swarm control (manager.py). This separation of concerns ensures that the framework is highly extensible. Developers can easily integrate new protocols into the packets.py module, introduce new behavioral models by extending profile.py, or change the configuration method without affecting the core traffic generation logic. This makes the tool future-proof and adaptable to evolving network standards.
+### Profile-Driven Generation
+
+> [!NOTE]
+> Define custom traffic profiles (.toml or similar configuration) to model specific behaviors (e.g., web browsing, heavy file transfers, intermittent heartbeat pings).
+
+> [!TIP]
+> The profiles are the heart of the system, allowing for the precise modeling of statistical behavior. This includes specifying packet-size distributions, protocol usage over time, and crucial parameters like _think time_ (the randomized
+> delay between sending subsequent packets), which dramatically enhances the realism compared to continuous stream generation.
+
+> [!IMPORTANT]
+> You can model everything from benign IoT[^4] device communications to complex coordinated scans.
+
+### Swarm Management
+
+> [!NOTE]
+> Coordinate multiple, simultaneous traffic generators (the _swarm_) from a centralized manager.
+
+> [!TIP]
+> The management layer handles the distribution and parallel execution of different profiles across various target hosts and interfaces.
+
+> [!IMPORTANT]
+> This capability enables large-scale, high-volume simulations, allowing a single control point to launch a heterogeneous mix of traffic streams, simulating an entire
+> segment of a corporate or residential network rather than just one machine.
+> This is vital for distributed performance and security testing.
+
+### Targeted Traffic
+
+> [!NOTE]
+> Easily specify target IP[^5] addresses, ports, and protocols for focused experimentation.
+
+> [!TIP]
+> The targeting mechanism supports defining streams that interact across the network stack, from Layer 3 (IP addresses and fragmentation rules) and Layer 4 (TCP/UDP[^6] ports) all the way up to application-layer protocols.
+
+> [!IMPORTANT]
+> This allows for fine-grained control, enabling tests against specific services, assessing the effectiveness of network segmentation policies, or focusing stress tests on a single, critical application port.
+
+
+### Modular Design
+
+> [!TIP]
+> Built on clear components for configuration (_config.py_), profile definition (_profile.py_), packet generation (_packets.py_), and swarm control (_manager.py_).
+
+> [!IMPORTANT]
+> This separation of concerns ensures that the framework is highly extensible.
+> Developers can easily integrate new protocols into the packets.py module, introduce new behavioural models by extending profile.py, or change the configuration method without affecting the core traffic generation logic.
+> This makes the tool future-proof and adaptable to evolving network standards.
 
 ## Installation
 
@@ -102,3 +162,10 @@ python profiled-swarm.py --help
 # License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
+
+
+[^1]: Transmission Control Protocol
+[^2]: HyperText Transfer Protocol
+[^3]: Intrusion Detection System
+[^4]: Internet of Things
+[^5]: Internet Protocol
