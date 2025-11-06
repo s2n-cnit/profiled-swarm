@@ -87,8 +87,8 @@ _Poetry_ provides robust dependency resolution and environment isolation, ensuri
   pip install poetry
   ```
 
-  > [!WARNING]
-  > If you prefer a platform-specific installer, consult the official _Poetry_ documentation.
+> [!WARNING]
+> If you prefer a platform-specific installer, consult the official _Poetry_ documentation.
 
 ## Setup
 
