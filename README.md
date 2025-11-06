@@ -83,9 +83,9 @@ _Poetry_ provides robust dependency resolution and environment isolation, ensuri
 - Poetry
   Install globally:
 
-  ```shell
-  pip install poetry
-  ```
+```shell
+pip install poetry
+```
 
 > [!WARNING]
 > If you prefer a platform-specific installer, consult the official _Poetry_ documentation.
@@ -94,16 +94,16 @@ _Poetry_ provides robust dependency resolution and environment isolation, ensuri
 
 1. Clone the repository:
 
-    ```shell
-    git clone [https://github.com/s2n-cnit/profiled-swarm.git](https://github.com/s2n-cnit/profiled-swarm.git)
-    cd profiled-swarm
-    ```
+```shell
+git clone [https://github.com/s2n-cnit/profiled-swarm.git](https://github.com/s2n-cnit/profiled-swarm.git)
+cd profiled-swarm
+```
 
 2. Install dependencies using Poetry:
 
-    ```shell
-    poetry install
-    ```
+```shell
+poetry install
+```
 
 > [!TIP]
 > This command reads the _pyproject.toml_ file, fetches all necessary dependencies (including core libraries like Scapy for packet crafting), and installs them into a clean, isolated virtual environment.
@@ -134,23 +134,23 @@ The main entry point is _profiled-swarm.py_, which is controlled by configuratio
 
     A typical _manager.toml_ structure includes:
 
-    ```ini
-    [manager]
-    interface = "eth0"
-    log_level = "INFO"
+```ini
+[manager]
+interface = "eth0"
+log_level = "INFO"
 
-    # Profile 1: Simulates a user browsing a specific server
-    [profiles.user_profile_1]
-    config_file = "config/profile_web_browser.toml" # The path to the behavioral definition file
-    target_host = "192.168.1.100"                   # The destination IP address for the traffic
-    rate_limit_pps = 50                             # Maximum packets per second for this specific generator
+# Profile 1: Simulates a user browsing a specific server
+[profiles.user_profile_1]
+config_file = "config/profile_web_browser.toml" # The path to the behavioral definition file
+target_host = "192.168.1.100"                   # The destination IP address for the traffic
+rate_limit_pps = 50                             # Maximum packets per second for this specific generator
 
-    # Profile 2: Simulates a low-rate, background bot
-    [profiles.bot_profile_2]
-    config_file = "config/profile_heartbeat_bot.toml"
-    target_host = "10.0.0.5"
-    rate_limit_pps = 5
-    ```
+# Profile 2: Simulates a low-rate, background bot
+[profiles.bot_profile_2]
+config_file = "config/profile_heartbeat_bot.toml"
+target_host = "10.0.0.5"
+rate_limit_pps = 5
+```
 
 > [!IMPORTANT]
 > Each config_file referenced (e.g., _profile_web_browser.toml_) must contain the detailed parameters for the statistical distributions and protocol sequence the generator should follow.
@@ -170,16 +170,16 @@ The main entry point is _profiled-swarm.py_, which is controlled by configuratio
 > [!TIP]
 > Use the --help flag for additional command-line options:
 
-    ```shell
-    python profiled-swarm.py --help
+```shell
+python profiled-swarm.py --help
 
-    # Example Output:
-    # usage: profiled-swarm.py [-h] [--config CONFIG_PATH]
-    #
-    # optional arguments:
-    #   -h, --help            show this help message and exit
-    #   --config CONFIG_PATH  Specify the path to the manager configuration file. (default: manager.toml)
-    ```
+# Example Output:
+# usage: profiled-swarm.py [-h] [--config CONFIG_PATH]
+#
+# optional arguments:
+#   -h, --help            show this help message and exit
+#   --config CONFIG_PATH  Specify the path to the manager configuration file. (default: manager.toml)
+```
 
 # License
 
