@@ -70,12 +70,25 @@ This capability is essential for creating high-fidelity network simulations that
 
 ## Installation
 
-This project appears to use poetry for dependency management, which is the recommended installation method. Poetry provides robust dependency resolution and environment isolation, ensuring that the project runs consistently across different machines without conflicts with other Python projects.
+> [!NOTE]
+This project appears to use _poetry_ for dependency management, which is the recommended installation method.
+
+> [!TIP]
+_Poetry_ provides robust dependency resolution and environment isolation, ensuring that the project runs consistently across different machines without conflicts with other _Python_ projects.
 
 ## Prerequisites
 
-- Python 3.8+ (The project leverages modern Python features and requires a stable 3.8 or newer environment.)
-- Poetry (install globally: pip install poetry). If you prefer a platform-specific installer, consult the official Poetry documentation.
+- Python 3.8+
+  The project leverages modern Python features and requires a stable 3.8 or newer environment.
+- Poetry
+  Install globally:
+
+  ```shell
+  pip install poetry
+  ```
+
+  > [!WARNING]
+  > If you prefer a platform-specific installer, consult the official _Poetry_ documentation.
 
 ## Setup
 
@@ -92,7 +105,8 @@ This project appears to use poetry for dependency management, which is the recom
     poetry install
     ```
 
-    This command reads the pyproject.toml file, fetches all necessary dependencies (including core libraries like Scapy for packet crafting), and installs them into a clean, isolated virtual environment.
+    > [!TIP]
+    > This command reads the _pyproject.toml_ file, fetches all necessary dependencies (including core libraries like Scapy for packet crafting), and installs them into a clean, isolated virtual environment.
 
 3. Activate the virtual environment:
 
@@ -104,19 +118,21 @@ This project appears to use poetry for dependency management, which is the recom
 
 ## Usage
 
-The main entry point is profiled-swarm.py, which is controlled by configuration files (like manager.toml).
+The main entry point is _profiled-swarm.py_, which is controlled by configuration files (like _manager.toml_).
 
 1. Configure the Swarm
-   Edit the manager.toml file to define the global settings, including the network interface, logging level, and the list of profiles to execute.
+
+   > [!NOTE]
+   > Edit the manager.toml file to define the global settings, including the network interface, logging level, and the list of profiles to execute.
 
    The configuration file is structured into two primary sections:
 
-   1. [manager]: Defines global execution parameters.
+   1. _[manager]_: Defines global execution parameters.
       - interface: Specifies the network adapter (e.g., eth0, wlan0) through which all traffic will be sent.
-      - log_level: Sets the verbosity of the output (DEBUG, INFO, WARNING, etc.).
-   2. [profiles.profile_name]: Defines individual traffic streams that constitute the swarm. Each profile is an instance of a generator with its unique target and behavioral definition.
+      - log_level: Sets the verbosity of the output (_DEBUG_, _INFO_, _WARNING_, etc.).
+   2. _[profiles.profile_name]_: Defines individual traffic streams that constitute the swarm. Each profile is an instance of a generator with its unique target and behavioural definition.
 
-    A typical manager.toml structure includes:
+    A typical _manager.toml_ structure includes:
 
     ```ini
     [manager]
@@ -136,32 +152,41 @@ The main entry point is profiled-swarm.py, which is controlled by configuration 
     rate_limit_pps = 5
     ```
 
-    Each config_file referenced (e.g., profile_web_browser.toml) must contain the detailed parameters for the statistical distributions and protocol sequence the generator should follow.
+    > [!IMPORTANT]
+    > Each config_file referenced (e.g., _profile_web_browser.toml_) must contain the detailed parameters for the statistical distributions and protocol sequence the generator should follow.
 
-2. Run the GeneratorExecute the main script. The script will initialize the Manager, load the configurations, and start the swarm of traffic generators as parallel worker processes.
+2. Run the GeneratorExecute the main script.
 
-```shell
-python profiled-swarm.py --config manager.toml.
-```
+   > [!NOTE]
+   > The script will initialize the Manager, load the configurations, and start the swarm of traffic generators as parallel worker processes.
 
-Upon execution, the Manager will print its status, and each running generator will log its activity, including the start time, the profile it is executing, and any errors encountered during packet transmission.
+    ```shell
+    python profiled-swarm.py --config manager.toml.
+    ```
+    > [!IMPORTANT]
+    > Upon execution, the Manager will print its status, and each running generator will log its activity, including the start time, the profile it is executing, and any errors encountered during packet transmission.
 
-Use the --help flag for additional command-line options:
+    > [!TIP]
+    > Use the --help flag for additional command-line options:
 
-```shell
-python profiled-swarm.py --help
+    ```shell
+    python profiled-swarm.py --help
 
-# Example Output:
-# usage: profiled-swarm.py [-h] [--config CONFIG_PATH]
-#
-# optional arguments:
-#   -h, --help            show this help message and exit
-#   --config CONFIG_PATH  Specify the path to the manager configuration file. (default: manager.toml)
-```
+    # Example Output:
+    # usage: profiled-swarm.py [-h] [--config CONFIG_PATH]
+    #
+    # optional arguments:
+    #   -h, --help            show this help message and exit
+    #   --config CONFIG_PATH  Specify the path to the manager configuration file. (default: manager.toml)
+    ```
 
 # License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+> [!NOTE]
+> This project is licensed under the **MIT** License.
+
+> [!TIP]
+> See the LICENSE file for details.
 
 
 [^1]: Transmission Control Protocol
