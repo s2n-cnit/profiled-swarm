@@ -105,14 +105,14 @@ _Poetry_ provides robust dependency resolution and environment isolation, ensuri
     poetry install
     ```
 
-    > [!TIP]
-    > This command reads the _pyproject.toml_ file, fetches all necessary dependencies (including core libraries like Scapy for packet crafting), and installs them into a clean, isolated virtual environment.
+> [!TIP]
+> This command reads the _pyproject.toml_ file, fetches all necessary dependencies (including core libraries like Scapy for packet crafting), and installs them into a clean, isolated virtual environment.
 
 3. Activate the virtual environment:
 
    ```shell
    poetry shell
-    ```
+   ```
 
     Once activated, you can execute profiled-swarm.py directly, knowing that all required packages are available and properly configured.
 
@@ -155,7 +155,7 @@ The main entry point is _profiled-swarm.py_, which is controlled by configuratio
 > [!IMPORTANT]
 > Each config_file referenced (e.g., _profile_web_browser.toml_) must contain the detailed parameters for the statistical distributions and protocol sequence the generator should follow.
 
-2. Run the GeneratorExecute the main script.
+1. Run the GeneratorExecute the main script.
 
 > [!NOTE]
 > The script will initialize the Manager, load the configurations, and start the swarm of traffic generators as parallel worker processes.
@@ -163,6 +163,7 @@ The main entry point is _profiled-swarm.py_, which is controlled by configuratio
     ```shell
     python profiled-swarm.py --config manager.toml.
     ```
+
 > [!IMPORTANT]
 > Upon execution, the Manager will print its status, and each running generator will log its activity, including the start time, the profile it is executing, and any errors encountered during packet transmission.
 
