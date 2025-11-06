@@ -131,8 +131,7 @@ The main entry point is _profiled-swarm.py_, which is controlled by configuratio
       - interface: Specifies the network adapter (e.g., eth0, wlan0) through which all traffic will be sent.
       - log_level: Sets the verbosity of the output (_DEBUG_, _INFO_, _WARNING_, etc.).
    2. _[profiles.profile_name]_: Defines individual traffic streams that constitute the swarm. Each profile is an instance of a generator with its unique target and behavioural definition.
-
-    A typical _manager.toml_ structure includes:
+      A typical _manager.toml_ structure includes:
 
 ```ini
 [manager]
@@ -160,9 +159,9 @@ rate_limit_pps = 5
 > [!NOTE]
 > The script will initialize the Manager, load the configurations, and start the swarm of traffic generators as parallel worker processes.
 
-    ```shell
-    python profiled-swarm.py --config manager.toml.
-    ```
+```shell
+python profiled-swarm.py --config manager.toml.
+```
 
 > [!IMPORTANT]
 > Upon execution, the Manager will print its status, and each running generator will log its activity, including the start time, the profile it is executing, and any errors encountered during packet transmission.
