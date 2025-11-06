@@ -180,6 +180,11 @@ python profiled-swarm.py --help
 #   --config CONFIG_PATH  Specify the path to the manager configuration file. (default: manager.toml)
 ```
 
+# Extra Info
+
+> [!TIP]
+> For more details you can read the [manual](manual.pdf).
+
 # License
 
 > [!NOTE]
@@ -194,3 +199,4 @@ python profiled-swarm.py --help
 [^3]: Intrusion Detection System
 [^4]: Internet of Things
 [^5]: Internet Protocol
+[^6]: User Datagram Protocol
