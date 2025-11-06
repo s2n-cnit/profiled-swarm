@@ -122,8 +122,8 @@ The main entry point is _profiled-swarm.py_, which is controlled by configuratio
 
 1. Configure the Swarm
 
-   > [!NOTE]
-   > Edit the manager.toml file to define the global settings, including the network interface, logging level, and the list of profiles to execute.
+> [!NOTE]
+> Edit the manager.toml file to define the global settings, including the network interface, logging level, and the list of profiles to execute.
 
    The configuration file is structured into two primary sections:
 
@@ -152,8 +152,8 @@ The main entry point is _profiled-swarm.py_, which is controlled by configuratio
     rate_limit_pps = 5
     ```
 
-    > [!IMPORTANT]
-    > Each config_file referenced (e.g., _profile_web_browser.toml_) must contain the detailed parameters for the statistical distributions and protocol sequence the generator should follow.
+> [!IMPORTANT]
+> Each config_file referenced (e.g., _profile_web_browser.toml_) must contain the detailed parameters for the statistical distributions and protocol sequence the generator should follow.
 
 2. Run the GeneratorExecute the main script.
 
@@ -163,11 +163,11 @@ The main entry point is _profiled-swarm.py_, which is controlled by configuratio
     ```shell
     python profiled-swarm.py --config manager.toml.
     ```
-    > [!IMPORTANT]
-    > Upon execution, the Manager will print its status, and each running generator will log its activity, including the start time, the profile it is executing, and any errors encountered during packet transmission.
+> [!IMPORTANT]
+> Upon execution, the Manager will print its status, and each running generator will log its activity, including the start time, the profile it is executing, and any errors encountered during packet transmission.
 
-    > [!TIP]
-    > Use the --help flag for additional command-line options:
+> [!TIP]
+> Use the --help flag for additional command-line options:
 
     ```shell
     python profiled-swarm.py --help
