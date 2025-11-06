@@ -127,10 +127,10 @@ The main entry point is _profiled-swarm.py_, which is controlled by configuratio
 
    The configuration file is structured into two primary sections:
 
-   1. _[manager]_: Defines global execution parameters.
+   1. _[manager]_: defines global execution parameters.
       - interface: Specifies the network adapter (e.g., eth0, wlan0) through which all traffic will be sent.
       - log_level: Sets the verbosity of the output (_DEBUG_, _INFO_, _WARNING_, etc.).
-   2. _[profiles.profile_name]_: Defines individual traffic streams that constitute the swarm. Each profile is an instance of a generator with its unique target and behavioural definition.
+   2. _[profiles.profile_name]_: defines individual traffic streams that constitute the swarm. Each profile is an instance of a generator with its unique target and behavioural definition.
       A typical _manager.toml_ structure includes:
 
 ```ini
