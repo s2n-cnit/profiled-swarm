@@ -157,8 +157,8 @@ The main entry point is _profiled-swarm.py_, which is controlled by configuratio
 
 2. Run the GeneratorExecute the main script.
 
-   > [!NOTE]
-   > The script will initialize the Manager, load the configurations, and start the swarm of traffic generators as parallel worker processes.
+> [!NOTE]
+> The script will initialize the Manager, load the configurations, and start the swarm of traffic generators as parallel worker processes.
 
     ```shell
     python profiled-swarm.py --config manager.toml.
