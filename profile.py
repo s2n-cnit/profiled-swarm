@@ -113,3 +113,20 @@ class demo_ntp_attack_ps2k_3k_pm10k(demo_ntp_attack_ps500_1200_pm7k):
 
 class demo_ntp_attack_ps3k_4k_pm10k(demo_ntp_attack_ps500_1200_pm7k):
     payload_size_range = [3000, 4000]
+
+
+class demo_ntp_attack_big(demo_ntp_attack_ps500_1200_pm7k):
+    payload_size_range = [3000, 4000]
+    ref = np.array(
+        [
+            26,
+            1000,
+            100000,
+            100000,
+            100000,
+            100000,
+            100000,
+            100000
+        ]
+    )
+    interval = list(120 / ref)
