@@ -129,5 +129,6 @@ class demo_ntp_attack_big(demo_ntp_attack_ps500_1200_pm7k):
             100000
         ]
     )
+    count = list(map(round, ref))
     interval = list(120 / ref)
     duration_seconds = 2 * 60 * len(ref)
