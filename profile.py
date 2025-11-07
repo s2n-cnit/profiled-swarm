@@ -4,10 +4,12 @@ import numpy as np
 class __demo:
     show = False
     kind = "general"
-    transport = "tcp"
+    # transport = "tcp"
+    transport = "udp"
     interval = [1.0 / 200]
     payload_size_range = [500, 1200]
-    port_dest = [80, 1935, 1936, 2395, 443, 53]
+    # port_dest = [80, 1935, 1936, 2395, 443, 53]
+    port_dest = [18236]
     ip_dest = ["10.8.0.100"]  # HOLO Alex OVPN Profile
     # ip_dest = ["10.8.0.102"]  # HOLO Laptop OVPN Profile
 
