@@ -130,3 +130,4 @@ class demo_ntp_attack_big(demo_ntp_attack_ps500_1200_pm7k):
         ]
     )
     interval = list(120 / ref)
+    duration_seconds = 2 * 60 * len(ref)
