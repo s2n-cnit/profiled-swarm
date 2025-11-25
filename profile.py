@@ -1,134 +1,55 @@
-import numpy as np
+import signal
+import sys
+from typing import Self, Type
+
+from lib import duration_end
+from log import Error, logger
+
+# RTSP:                                     TCP/554
+# YouTube Live, Vimeo, LinkedIn or Twitch:  TCP/1935
+# RTMP (Periscope):                         TCP/80
+# RTMPS (Facebook Live or YouTube Live):    TCP/443
+# RTMP LinkedIn Live:                       TCP/1936
+# RTMPS to LinkedIn Live:                   TCP/2395        TCP/2396
+# VidiU speed test function:                TCP/2545        TCP/2565
+# Auth YouTube Live, Facebook Live
+# ---| Ustream, Livestream, and Twitch:     TCP/443/HTTPs
+# DNS lookups:                              UDP/53
+# Web UI of the VidiU for configuration:    TCP/443/HTTPs
+# Apple Bonjour:                            TCP/5353
 
 
-class __demo:
-    show = False
-    kind = "general"
-    # transport = "tcp"
-    transport = "udp"
-    interval = [1.0 / 200]
-    payload_size_range = [500, 1200]
-    # port_dest = [80, 1935, 1936, 2395, 443, 53]
-    port_dest = [18236]
-    ip_dest = ["10.8.0.100"]  # HOLO Alex OVPN Profile
-    # ip_dest = ["10.8.0.102"]  # HOLO Laptop OVPN Profile
+class Profile:
+    __required_fields = [
+        "count",
+        "interval_seconds",
+        "duration_seconds",
+    ]
 
+    __optional_fields = {
+        "test": False,
+        "show": False,
+        "verbose": False
+    }
 
-class demo_ntp_normal(__demo):
-    ref = np.array(
-        [
-            26,
-            26,
-            26,
-            26,
-            26
-        ]
-    )
-    count = list(map(round, ref))
-    interval = list(120 / ref)
-    duration_seconds = 2 * 60 * len(ref)
-
-
-class demo_ntp_attack_ps500_1200_pm3k(__demo):
-    ref = np.array(
-        [
-            26,
-            1000,
-            3000,
-            3000,
-            3000
-        ]
-    )
-    count = list(map(round, ref))
-    interval = list(120 / ref)
-    duration_seconds = 2 * 60 * len(ref)
-
-
-class demo_ntp_attack_ps2k_3k_pm3k(demo_ntp_attack_ps500_1200_pm3k):
-    payload_size_range = [2000, 3000]
-
-
-class demo_ntp_attack_ps3k_4k_pm3k(demo_ntp_attack_ps500_1200_pm3k):
-    payload_size_range = [3000, 4000]
-
-
-class demo_ntp_attack_ps500_1200_pm5k(demo_ntp_attack_ps500_1200_pm3k):
-    ref = np.array(
-        [
-            26,
-            1000,
-            5000,
-            5000,
-            5000
-        ]
-    )
-    interval = list(120 / ref)
-
-
-class demo_ntp_attack_ps2k_3k_pm5k(demo_ntp_attack_ps500_1200_pm5k):
-    payload_size_range = [2000, 3000]
-
-
-class demo_ntp_attack_ps3k_4k_pm5k(demo_ntp_attack_ps500_1200_pm5k):
-    payload_size_range = [3000, 4000]
-
-
-class demo_ntp_attack_ps500_1200_pm7k(demo_ntp_attack_ps500_1200_pm5k):
-    ref = np.array(
-        [
-            26,
-            1000,
-            7000,
-            7000,
-            7000
-        ]
-    )
-    interval = list(120 / ref)
-
-
-class demo_ntp_attack_ps2k_3k_pm7k(demo_ntp_attack_ps500_1200_pm5k):
-    payload_size_range = [2000, 3000]
-
-
-class demo_ntp_attack_ps3k_4k_pm7k(demo_ntp_attack_ps500_1200_pm5k):
-    payload_size_range = [3000, 4000]
-
-
-class demo_ntp_attack_ps500_1200_pm10k(demo_ntp_attack_ps500_1200_pm7k):
-    ref = np.array(
-        [
-            26,
-            1000,
-            7000,
-            7000,
-            7000
-        ]
-    )
-    interval = list(120 / ref)
-
-
-class demo_ntp_attack_ps2k_3k_pm10k(demo_ntp_attack_ps500_1200_pm7k):
-    payload_size_range = [2000, 3000]
-
-
-class demo_ntp_attack_ps3k_4k_pm10k(demo_ntp_attack_ps500_1200_pm7k):
-    payload_size_range = [3000, 4000]
-
-
-class demo_ntp_attack_big(demo_ntp_attack_ps500_1200_pm7k):
-    payload_size_range = [3000, 4000]
-    ref = np.array(
-        [
-            26,
-            1000,
-            100000,
-            100000,
-            100000,
-            100000,
-            100000,
-            100000
-        ]
-    )
-    count = list(map(round, ref))
-    interval = list(120 / ref)
-    duration_seconds = 2 * 60 * len(ref)
+    @staticmethod
+    def validate(cls: Type[Self]):
+        for f in Profile.__required_fields:
+            if not hasattr(cls, f):
+                logger.error(f"Profile {cls.__name__} not define field {f}")
+                sys.exit(Error.NOT_FIELD_PROFILE)
+        for f, v in Profile.__optional_fields.items():
+            if not hasattr(cls, f):
+                setattr(cls, f, v)
+        if cls.duration_seconds > 0:
+            logger.info(
+                f"Set duration of generation: {cls.duration_seconds} seconds"
+            )
+            signal.signal(signal.SIGALRM, duration_end)
+            signal.alarm(cls.duration_seconds)
+        if len(cls.interval_seconds) != len(cls.count):
+            logger.error(
+                f"Profile {cls.__name__} has internal and count"
+                "fields not of the same length"
+            )
+            sys.exit(Error.NOT_VALID_FIELD)
