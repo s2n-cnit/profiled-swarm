@@ -2,7 +2,6 @@
 
 from clize import run
 from generator import generator
-from manager import manager
 
 if __name__ == "__main__":
-    run(generator, alt=manager)
+    run(generator)
