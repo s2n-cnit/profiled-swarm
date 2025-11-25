@@ -17,7 +17,7 @@ class monlist:
         return ip_layer / udp_layer / ntp_control_layer
 
 
-class ntp_ampl_normal(monlist):
+class ntp_ampl_attack_0(monlist):
     ref = np.array(
         [
             26,
@@ -32,7 +32,7 @@ class ntp_ampl_normal(monlist):
     duration_seconds = 2 * 60 * len(ref)
 
 
-class ntp_ampl_attack_light(monlist):
+class ntp_ampl_attack_1(monlist):
     ref = np.array(
         [
             26,
@@ -47,7 +47,7 @@ class ntp_ampl_attack_light(monlist):
     duration_seconds = 2 * 60 * len(ref)
 
 
-class ntp_ampl_attack_heavy(monlist):
+class ntp_ampl_attack_2(monlist):
     ref = np.array(
         [
             26,
