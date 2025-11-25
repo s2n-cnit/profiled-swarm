@@ -3,7 +3,7 @@ name = "profiled-swarm"
 version = "0.1.0"
 description = "Generator of Targeted Traffic with Profiles"
 authors = [{ name = "Alex Carrega", email = "alessandro.carrega@unige.it" }]
-requires-python = ">=3.4,<3.6"
+requires-python = ">=3.12.0, <3.14"
 readme = "README.md"
 license = "MIT"
 dependencies = [
