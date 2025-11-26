@@ -26,6 +26,10 @@ class Profile:
         "duration_seconds",
     ]
 
+    __required_methods = [
+        "create"
+    ]
+
     __optional_fields = {
         "test": False,
         "show": False,
@@ -38,6 +42,10 @@ class Profile:
             if not hasattr(cls, f):
                 logger.error(f"Profile {cls.__name__} not define field {f}")
                 sys.exit(Error.NOT_FIELD_PROFILE)
+        for f in Profile.__required_methods:
+            if not hasattr(cls, f) or callable(getattr(cls, f)):
+                logger.error(f"Profile {cls.__name__} not define methods {f}")
+                sys.exit(Error.NOT_METHOD_PROFILE)
         for f, v in Profile.__optional_fields.items():
             if not hasattr(cls, f):
                 setattr(cls, f, v)

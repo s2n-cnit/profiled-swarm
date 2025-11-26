@@ -15,12 +15,19 @@ This capability is essential for researchers and engineers performing network se
 
 # Quick Start: Installation
 
-Profiled Swarm uses _Poetry_ for dependency management, which is the recommended way to install and run the project in an isolated Python environment.
+Profiled Swarm uses a two-part approach for dependency management and execution: _poetry_ defines the project structure and dependencies, while _uv_ handles installation and running.
+
+> [!TIP]
+> We strongly recommend this combination because _uv_ is a modern, high-performance tool that resolves package conflicts and installs environments significantly faster and with fewer common system-level problems than traditional Python package managers.
 
 ## Prerequisites
 
 1. You must have _Python 3.8+ installed.
-2. You need Poetry. If you do not have it, install it globally using pip install poetry.
+2. You need uv (for reliable installation and execution). Install it globally:
+
+```shell
+pip install uv
+```
 
 ## Setup Steps
 
@@ -31,20 +38,43 @@ git clone [https://github.com/s2n-cnit/profiled-swarm.git](https://github.com/s2
 cd profiled-swarm
 ```
 
-2. **Install Dependencies**: use Poetry to read the configuration file (_pyproject.toml_) and install all necessary dependencies, including core libraries like Scapy for packet crafting.
+2. **Setup the virtual environment**:
 
 ```shell
-poetry install
-```
-
-3. **Activate the Environment**: the isolated virtual environment provided by Poetry.
-
-```shell
-poetry shell
+uv venv
 ```
 
 ## Basic Usage
 
-The primary entry point is the _profiled-swarm.py_ script, which is controlled by a main configuration file, typically named manager.toml.ù
+1. Pass the profile class path using the options <kbd>-p</kdb>.
 
-TODO...
+```shell
+uv run profiled-swarm.py -p profiles.d/ntp_ampl.ntp_ampl_attack_0
+```
+
+### Create custom profiles
+
+You can easily create custom profiles defining a new python class.
+
+#### Steps
+
+1. Includes the following attributes:
+
+   - **count**: number of generated packets.
+   - **interval_seconds**: between each generated packets.
+   - **duration_seconds**: of the swam generation.
+
+2. The following attributes are optional:
+
+   - ***test**: only to test the configuration and packet creation without sending the packets.
+   - **show**: summary of the generated packets,
+   - **verbose**: more details about sending of the generated packets.
+
+3. The following method is mandatory:
+
+   - **create()**: return the packet to generated using the syntax provided by _scapy_.
+
+
+[^1]: Intrusion Detection System
+[^2]: Transmission Control Protocol
+[^3]: Hypertext Transfer Protocol

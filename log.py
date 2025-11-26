@@ -27,4 +27,5 @@ logger.configure(**config)
 class Error(int, Enum):
     NOT_PROFILE = 1
     NOT_FIELD_PROFILE = 2
+    NOT_METHOD_PROFILE = 3
     NOT_VALID_FIELD = 4
