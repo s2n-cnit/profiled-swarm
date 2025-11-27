@@ -1,6 +1,6 @@
 import numpy as np
 from typing import Self
-from scapy.all import IP, UDP, Packet
+from scapy.all import IP, UDP, Packet, Raw
 
 
 class monlist:
