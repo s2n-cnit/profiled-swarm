@@ -21,6 +21,7 @@ from log import Error, logger
 
 class Profile:
     __required_fields = [
+        "interface",
         "count",
         "interval_seconds",
         "duration_seconds",

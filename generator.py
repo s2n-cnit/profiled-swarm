@@ -29,6 +29,7 @@ def generator(*, profile_class_path: "p" = "profile"):  # noqa: F821
         if not _p.test:
             send(
                 pkts,
+                iface=_p.interface,
                 count=count,
                 loop=count == -1,
                 inter=interval_seconds,
