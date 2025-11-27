@@ -7,7 +7,7 @@ class monlist:
     show = False
     verbose = False
     test = False
-    victim_ip = "10.0.8.1"
+    victim_ip = "10.9.0.100"
     ntp_server_ip = "192.168.130.49"
 
     def create(self: Self) -> Packet:
