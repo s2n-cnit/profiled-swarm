@@ -43,7 +43,7 @@ class Profile:
                 logger.error(f"Profile {cls.__name__} not define field {f}")
                 sys.exit(Error.NOT_FIELD_PROFILE)
         for f in Profile.__required_methods:
-            if not hasattr(cls, f) or callable(getattr(cls, f)):
+            if not hasattr(cls, f) or not callable(getattr(cls, f)):
                 logger.error(f"Profile {cls.__name__} not define methods {f}")
                 sys.exit(Error.NOT_METHOD_PROFILE)
         for f, v in Profile.__optional_fields.items():

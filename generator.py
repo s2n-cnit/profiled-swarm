@@ -19,17 +19,18 @@ def generator(*, profile_class_path: "p" = "profile"):  # noqa: F821
     """
     profile = lib.load_class(profile_class_path)
     Profile.validate(profile)
+    _p = profile()
     keyboard_interrupt(_exit, return_code=1, waiting=False)
-    for interval_seconds, count in zip(profile.interval_seconds, profile.count):
+    for interval_seconds, count in zip(_p.interval_seconds, _p.count):
         logger.info(f"interval: {interval_seconds} - count: {count}")
-        pkts = profile.create()
-        if profile.show:
+        pkts = _p.create()
+        if _p.show:
             pkts.show()
-        if not profile.test:
+        if not _p.test:
             send(
                 pkts,
                 count=count,
                 loop=count == -1,
                 inter=interval_seconds,
-                verbose=profile.verbose
+                verbose=_p.verbose
             )
