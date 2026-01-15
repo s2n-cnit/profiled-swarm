@@ -1,5 +1,5 @@
-from scapy.all import Packet
-from typing import List
+from scapy.all import IP, UDP, TCP, Packet, Raw, Ether
+from typing import List, Self
 
 
 class base_profile:
@@ -38,9 +38,25 @@ class base_profile:
     # they can be senders of real attacks when we impersonate victims
     dst_port: int | List[int]
 
-    def create(self) -> Packet:
+    # It is necessary to implement the create method to generate the packets following the Scapy format.
+    # See https://scapy.readthedocs.io/en/latest/ for more details on creating packets with Scapy.
+
+    def create(self: Self) -> Packet:
         """
-        Create and return a scapy Packet object to be sent.
-        See https://scapy.readthedocs.io/en/latest/ for more details on creating packets with Scapy.
+        Example of TCP packets
         """
-        pass
+        layer_2 = Ether()
+        layer_3 = IP(src=self.src_ip, dst=self.dst_ip)
+        layer_4 = TCP(sport=self.src_port, dport=self.dst_ports)
+        data: str  # Some data for the payload
+        return layer_2 / layer_3 / layer_4 / Raw(load=data)
+
+    def create(self: Self) -> Packet:
+        """
+        Example of UDP packets
+        """
+        layer_2 = Ether()
+        layer_3 = IP(src=self.src_ip, dst=self.dst_ip)
+        layer_4 = UDP(sport=self.src_port, dport=self.dst_ports)
+        data: str  # Some data for the payload
+        return layer_2 / layer_3 / layer_4 / Raw(load=data)
